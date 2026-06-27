@@ -2,40 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: dark;
-  --background: #000000;
-  --card: #121212;
-  --primary: #8b5cf6;
-  --primary-foreground: #ffffff;
-}
-
-html,
-body {
-  height: 100%;
+html {
+  background: black;
+  overflow-y: scroll;
 }
 
 body {
-  background-color: var(--background);
-  color: white;
-  -webkit-font-smoothing: antialiased;
-  font-feature-settings: "rlig" 1, "calt" 1;
+  background: black;
 }
 
-* {
-  scrollbar-color: rgba(148, 163, 184, 0.8) rgba(18, 18, 24, 0.35);
+.nav-button {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  padding: 0;
+  margin: 0;
+
+  transform: translateY(-50%);
+
+  -webkit-tap-highlight-color: transparent;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
-*::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+.nav-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform 0.14s cubic-bezier(0.22,1,0.36,1);
+
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
-*::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.8);
-  border-radius: 9999px;
-}
-
-*::-webkit-scrollbar-track {
-  background: rgba(18, 18, 24, 0.65);
+.nav-button:hover .nav-icon {
+  transform: scale(1.12);
 }

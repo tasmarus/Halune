@@ -1,0 +1,1658 @@
+"use client";
+
+import {
+  ResponsiveContainer,
+  CartesianGrid,
+  Area,
+  AreaChart,
+  Line,
+  YAxis,
+} from "recharts";
+
+import {
+  useEffect,
+  useState,
+  useRef,
+} from "react";
+
+import { Settings, User, Home, BookOpen, Bell } from "lucide-react";
+
+import { useRouter } from "next/navigation";
+
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+
+const data = [
+  { value: 0 },
+  { value: 400 },
+  { value: 650 },
+  { value: 900 },
+  { value: 1100 },
+  { value: 1400 },
+];
+
+function useCountUp(
+  target: number,
+  start: boolean,
+  duration = 900
+) {
+  
+  const [value, setValue] =
+    useState<number | null>(null);
+
+  const started = useRef(false);
+
+  useEffect(() => {
+    if (!start || started.current) return;
+
+    started.current = true;
+
+    let startTime: number;
+
+    const animate = (t: number) => {
+      if (!startTime) startTime = t;
+
+      const progress = Math.min(
+        (t - startTime) / duration,
+        1
+      );
+
+      const eased =
+        1 - Math.pow(1 - progress, 3);
+
+      setValue(target * eased);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [target, start, duration]);
+
+  return value;
+}
+
+export default function AIPage() {
+  const router = useRouter();
+
+  const [showPreviewText, setShowPreviewText] = useState(false);
+  
+  const [mounted, setMounted] = useState(false);
+
+  const [showApps, setShowApps] = useState(false);
+  const [isClosingApps, setIsClosingApps] = useState(false);
+  const [previewExpanded, setPreviewExpanded] = useState(false);
+  const [isClosingPreview, setIsClosingPreview] = useState(false);
+  const [showLaunchMenu, setShowLaunchMenu] = useState(false);
+  const [showLaunchCard, setShowLaunchCard] = useState(false);
+  const [cardVisible, setCardVisible] = useState(true);
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
+  const [thumbnailUrl, setThumbnailUrl] = useState("");
+
+  const [graphVisible, setGraphVisible] =
+    useState(false);
+
+  const [showDot, setShowDot] =
+    useState(false);
+
+  const initialized = useRef(false);
+
+const [gridVisible, setGridVisible] = useState(false);
+
+const [builderOpen, setBuilderOpen] =
+  useState(false);
+
+  useEffect(() => {
+    if (initialized.current) return;
+
+    initialized.current = true;
+
+    requestAnimationFrame(() => {
+      setMounted(true);
+
+      setGridVisible(true);
+
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          setGraphVisible(true);
+        });
+      }, 16);
+    });
+
+    const dotTimer = setTimeout(() => {
+      setShowDot(true);
+    }, 1410);
+
+    return () => {
+      clearTimeout(dotTimer);
+    };
+  }, []);
+
+  const stats = [
+    {
+      label: "Income",
+      type: "money",
+      percent: 5.3,
+      positive: true,
+    },
+    {
+      label: "Likes",
+      type: "number",
+      percent: 2.1,
+      positive: true,
+    },
+    {
+      label: "Clicks",
+      type: "number",
+      percent: -1.4,
+      positive: false,
+    },
+    {
+      label: "Conversion",
+      type: "percent",
+      percent: 0.4,
+      positive: true,
+    },
+  ];
+
+  const animatedValues = [
+    useCountUp(17160, mounted),
+    useCountUp(12481, mounted),
+    useCountUp(48902, mounted),
+    useCountUp(9.8, mounted),
+  ];
+
+  return (
+    <div className="flex min-h-screen w-full bg-black text-white">
+
+      {/* SIDEBAR */}
+{!builderOpen && (
+<div className="w-64 border-r border-white/10 p-4 flex flex-col justify-between shrink-0">
+        <div>
+          <h1 className="text-xl mb-6">
+            Halune
+          </h1>
+
+          <div className="mb-5">
+  <div
+    className="
+      h-11
+      rounded-xl
+      border
+      border-white/10
+      bg-white/5
+      px-3
+      flex
+      items-center
+      justify-between
+      mb-5
+    "
+  >
+    <div className="flex items-center gap-2">
+      <svg
+        width="16"
+        height="16"
+         className="shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#737373"
+        strokeWidth="2"
+        strokeLinecap="round"
+strokeLinejoin="round"
+      >
+        <circle cx="11" cy="11" r="7" />
+        <path d="M20 20l-4-4" />
+      </svg>
+
+      <span className="text-sm text-white/40">
+        Search...
+      </span>
+    </div>
+
+    <div className="flex items-center gap-1">
+      <div
+        className="
+          h-6
+          min-w-[24px]
+          px-2
+          rounded-md
+          border
+          border-white/10
+          bg-white/[0.03]
+          text-[11px]
+          text-white/50
+          flex
+          items-center
+          justify-center
+        "
+      >
+        ⌘
+      </div>
+
+      <div
+        className="
+          h-6
+          min-w-[24px]
+          px-2
+          rounded-md
+          border
+          border-white/10
+          bg-white/[0.03]
+          text-[11px]
+          text-white/50
+          flex
+          items-center
+          justify-center
+        "
+      >
+        F
+      </div>
+    </div>
+  </div>
+  {[
+    {
+      label: "Dashboard",
+      key: "D",
+      icon: (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#737373"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 10.5L12 4.5L19 10.5V18C19 19.1 18.1 20 17 20H7C5.9 20 5 19.1 5 18V10.5Z" />
+    <path d="M10 16.5H14" />
+  </svg>
+),
+    },
+    {
+      label: "Templates",
+      key: "T",
+      icon: (
+  <BookOpen 
+  size={15} 
+  strokeWidth={2} 
+  stroke="#737373"
+  />
+),
+    },
+    {
+      label: "Account",
+      key: "A",
+      icon: (
+  <User
+    size={15}
+    strokeWidth={2}
+    stroke="#737373"
+  />
+),
+    },
+    {
+      label: "Settings",
+      key: "S",
+      icon: (
+  <Settings
+    size={15}
+    strokeWidth={2}
+    stroke="#737373"
+  />
+)
+    },
+    {
+      label: "Notifications",
+      key: "N",
+      icon: (
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#737373"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M18 8a6 6 0 10-12 0c0 7-3 8-3 8h18s-3-1-3-8" />
+    <path d="M9.2 18.8h5.6c0 1.7-1.1 2.8-2.8 2.8s-2.8-1.1-2.8-2.8z" fill="#737373" stroke="none" />
+  </svg>
+),
+    }
+  ].map((item) => (
+    <button
+      key={item.label}
+      className="
+        w-full
+        h-11
+        px-3
+        rounded-xl
+        text-white/40
+        hover:bg-white/5
+        hover:text-white/70
+        transition-all
+        flex
+        items-center
+        justify-between
+        group
+      "
+    >
+      <div className="flex items-center gap-2">
+  <div className="w-5.2 h-5.2 flex items-center justify-center shrink-0">
+  {item.label === "Dashboard" ? (
+  <div className="scale-105 relative -left-[1px]">
+    {item.icon}
+  </div>
+) : (
+  item.icon
+)}
+</div>
+
+  <span
+  className={
+  item.label === "Templates"
+    ? "text-[14px] relative top-[-1.4px]"
+    : item.label === "Dashboard"
+    ? "text-[14px] relative top-[1px] -left-[3.5px]"
+    : item.label === "Notifications"
+? "text-[14px] relative top-[-1px]"
+
+: item.label === "Account"
+? "text-[14px] relative top-[-0.5px]"
+
+: item.label === "Settings"
+? "text-[14px] relative top-[-0.7px]"
+
+: "text-[14px]"
+}
+>
+  {item.label}
+</span>
+</div>
+
+      <div
+        className="
+          text-[11px]
+          text-white/35
+          border
+          border-white/10
+          rounded-md
+          px-2
+          py-[2px]
+          group-hover:text-white/60
+          transition
+        "
+      >
+        {item.key}
+      </div>
+    </button>
+    ))}
+</div>
+
+</div>
+
+<div className="p-4 rounded-xl bg-white/5 border border-white/10">
+          <p className="text-sm text-white/40 mb-2">
+            Boost to Pro!
+          </p>
+
+          <button
+            className="
+              w-full
+              py-2
+              rounded-lg
+              bg-purple-700
+              hover:bg-purple-600
+              transition
+            "
+style={{
+    backgroundColor: "#7202fa",
+  }}
+
+          >
+            Upgrade
+          </button>
+        </div>
+      </div>
+      )}
+
+      {/* MAIN */}
+      <div className="flex-1 p-6 overflow-y-auto">
+
+        {/* CHAT */}
+        {!builderOpen && (
+ <div className="mb-8">
+  <button
+    onClick={() => setBuilderOpen(true)}
+    className="
+      w-full
+      h-[110px]
+      rounded-2xl
+      border
+      border-white/10
+      bg-white/5
+      hover:bg-white/[0.07]
+      transition-all
+      duration-300
+      flex
+      items-center
+      justify-center
+      cursor-pointer
+    "
+    style={{
+  transform: mounted
+    ? "translateY(0)"
+    : "translateY(-12px)",
+
+  opacity: mounted
+    ? 1
+    : 0,
+
+  transition:
+    "all 0.5s cubic-bezier(0.22,1,0.36,1)",
+}}
+  >
+    <div className="text-center">
+      <div className="text-xl font-medium text-white">
+        AI App Builder
+      </div>
+
+      <div className="text-sm text-white/40 mt-1">
+        Build and customize apps with AI
+      </div>
+    </div>
+  </button>
+</div>
+
+        )}
+
+    
+
+        {builderOpen && (
+          <div className="flex flex-col items-center gap-6 pt-24">
+
+    {/* PREVIEW */}
+    <div
+  className="relative"
+  style={{
+    width: "1000px",
+    height: "420px",
+  }}
+>
+    
+    <motion.div
+  layoutId="builderPreview"
+  animate={{
+  opacity: cardVisible ? 1 : 0,
+}}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+    layout: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }}
+  className="
+    absolute
+    inset-0
+    w-[1000px]
+    h-[420px]
+    rounded-[32px]
+    border
+    border-white/10
+    bg-white/5
+    overflow-visible
+    flex
+    items-center
+    justify-center
+  "
+  style={{
+    pointerEvents: showLaunchCard ? "none" : "auto",
+  }}
+>
+  {!showLaunchMenu ? (
+  <motion.div
+    animate={{
+      opacity: showPreviewText ? 0 : 1,
+    }}
+    transition={{
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    className="text-white/40 text-4xl"
+  >
+    App Builder Page
+  </motion.div>
+) : (
+  <>
+    <div className="w-full h-full p-8 flex flex-col">
+
+  <div className="mb-5">
+
+    <input
+  id="thumbnail-upload"
+  type="file"
+  accept="image/png,image/jpeg,image/jpg,image/webp"
+  className="hidden"
+  onChange={(e) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+
+  setThumbnail(file);
+  setThumbnailUrl(URL.createObjectURL(file));
+}}
+/>
+
+    <div
+    onClick={() => {
+  document.getElementById("thumbnail-upload")?.click();
+}}
+      className="
+        relative
+        w-[210px]
+        h-[120px]
+        mx-auto mt-3
+        scale-[1.2]
+        rounded-2xl
+        border
+        border-solid
+        border-white/10
+        flex
+        flex-col
+        items-center
+        justify-center
+        gap-2
+        cursor-pointer
+      "
+    >
+      {thumbnailUrl ? (
+  <>
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        setThumbnail(null);
+        setThumbnailUrl("");
+      }}
+      className="
+        absolute
+        -top-5
+        -right-4
+        w-5
+        h-5
+        rounded-full
+        border
+        border-white/10
+        bg-white/5
+        flex
+        items-center
+        justify-center
+        hover:bg-white/[0.08]
+        transition-all
+        duration-200
+        z-10
+      "
+    >
+      <svg
+  width="14"
+  height="14"
+  viewBox="0 0 24 24"
+  fill="none"
+  style={{
+    transform: "translateY(0.5px)",
+  }}
+>
+  <path
+    d="M7 7L17 17M17 7L7 17"
+    stroke="rgb(255,255,255)"
+    strokeOpacity="0.4"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+    </button>
+
+    <img
+      src={thumbnailUrl}
+      alt="Thumbnail"
+      className="
+        w-full
+        h-full
+        object-cover
+        rounded-2xl
+        select-none
+        pointer-events-none
+      "
+      draggable={false}
+    />
+  </>
+) : (
+  <>
+    <svg
+      width="46"
+      height="46"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M12 6V18M6 12H18"
+        stroke="rgba(255,255,255,0.4)"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+
+    <div
+      className="
+        text-white/40
+        text-sm
+        select-none
+      "
+    >
+      Upload Thumbnail.
+    </div>
+  </>
+)}
+    </div>
+
+  </div>
+
+  <div className="flex flex-col gap-5">
+
+    <div>
+      <div className="text-white/40 text-sm mb-2">
+        App Name
+      </div>
+
+      <input
+        placeholder="My App"
+        className="
+          w-full
+          h-12
+          rounded-xl
+          bg-white/5
+          border
+          border-white/10
+          px-4
+          text-white/40
+          placeholder:text-white/40
+          outline-none
+        "
+      />
+    </div>
+
+    <div>
+      <div className="text-white/40 text-sm mb-2">
+        Price
+      </div>
+
+      <input
+        placeholder="$4.99 / month"
+        className="
+          w-full
+          h-12
+          rounded-xl
+          bg-white/5
+          border
+          border-white/10
+          px-4
+          text-white/40
+          placeholder:text-white/40
+          outline-none
+          "
+        />
+    </div>
+
+  </div>
+
+</div>
+  </>
+)}
+</motion.div>
+
+
+
+{(showApps || isClosingApps) && (
+  <div
+    style={{
+  animation: isClosingApps
+    ? "appsMenuOut 0.32s cubic-bezier(0.22,1,0.36,1) forwards"
+    : "appsMenuIn 0.32s cubic-bezier(0.22,1,0.36,1) forwards",
+}}
+
+  className="
+    absolute
+    top-16
+    left-[-228px]
+ w-50
+ rounded-[32px]
+    border
+    bg-white/5
+    border-white/10
+    overflow-visible
+    p-6
+
+  "
+>
+    <div className="flex flex-col gap-3 mb-4">
+      <h3 className="text-white/40 text-lg font-medium">
+  My Apps
+</h3>
+
+      <button
+        className="
+          px-4
+          py-2
+          rounded-xl
+          bg-white
+          text-black
+          text-sm
+          font-medium
+        "
+      >
+        Create App
+      </button>
+    </div>
+
+    <div className="text-white/40 text-sm">
+  No apps created yet.
+</div>
+  </div>
+)}
+
+<button
+  onClick={() => {
+  if (showApps) {
+    setIsClosingApps(true);
+
+    setTimeout(() => {
+      setShowApps(false);
+      setIsClosingApps(false);
+    }, 320);
+  } else {
+    setShowApps(true);
+  }
+}}
+  className="
+    absolute
+    top-5
+    -left-16
+    w-11
+    h-11
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+  <svg
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="rgb(255,255,255)"
+  opacity="0.4"
+  strokeWidth="2"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  <rect x="3" y="3" width="7" height="7" rx="2" />
+  <rect x="14" y="3" width="7" height="7" rx="2" />
+  <rect x="3" y="14" width="7" height="7" rx="2" />
+  <rect x="14" y="14" width="7" height="7" rx="2" />
+</svg>
+</button>
+
+<button
+  onClick={() => router.push("/builder")}
+  className="
+    absolute
+    -top-16
+    left-[24px]
+    w-11
+    h-11
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+  <svg
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="rgb(255,255,255)"
+  opacity="0.4"
+  strokeWidth="2.5"
+  strokeLinecap="round"
+>
+  <line x1="6" y1="6" x2="18" y2="18" />
+  <line x1="18" y1="6" x2="6" y2="18" />
+</svg>
+
+</button>
+
+<button
+  onClick={() => {
+    console.log("UNDO");
+  }}
+  className="
+    absolute
+    -top-16
+    left-[93px]
+    w-11
+    h-11
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+  <svg
+    width="21"
+    height="21"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="rgb(255,255,255)"
+    opacity="0.4"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={{
+  transform: "translateY(1.5px)"
+}}
+  >
+    <path d="M8 8L3 12L8 16" />
+    <path d="M4 12H15C18 12 19 11 19 8" />
+<path d="M19 8V7" />
+  </svg>
+</button>
+
+<button
+  onClick={() => {
+    console.log("REDO");
+  }}
+  className="
+    absolute
+    -top-16
+    left-[163px]
+    w-11
+    h-11
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+  <svg
+    width="21"
+    height="21"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="rgb(255,255,255)"
+    opacity="0.4"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    style={{
+  transform: "translate(-0.5px, -1px)",
+}}
+  >
+    <path d="M16 8L21 12L16 16" />
+    <path d="M20 12H9C6 12 5 13 5 16" />
+    <path d="M5 16V17" />
+  </svg>
+</button>
+
+<button
+  onClick={() => {
+  // Fade the whole card out
+  setCardVisible(false);
+
+  setTimeout(() => {
+    // Swap the UI while invisible
+    setShowLaunchMenu(!showLaunchMenu);
+
+    // Fade the whole card back in
+    setCardVisible(true);
+  }, 450);
+}}
+  className="
+    absolute
+    -bottom-9
+    -right-12
+    w-11
+    h-11
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+  <svg
+  width="23"
+  height="23"
+  viewBox="0 0 24 24"
+  fill="none"
+  style={{
+    transform: "translateY(0.6px)",
+  }}
+>
+  <circle
+    cx="12"
+    cy="12"
+    r="9.7"
+    stroke="rgb(255,255,255)"
+    strokeOpacity="0.4"
+    strokeWidth="2.5"
+  />
+
+  <path
+  d="M8 14L12 9.5L16 14"
+  stroke="rgb(255,255,255)"
+  strokeOpacity="0.4"
+  strokeWidth="2.5"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+/>
+</svg>
+</button>
+
+<button
+onClick={() => {
+  setShowPreviewText(true);
+  setPreviewExpanded(true);
+}}
+  className="
+    absolute
+    -top-11
+    -right-12
+    w-11
+    h-11
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+  <svg
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="rgb(255,255,255)"
+  opacity="0.4"
+  strokeWidth="2.5"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  className="text-white/40"
+>
+  <path d="M16 2H22V8" />
+<path d="M22 2L15 9" />
+
+<path d="M2 16V22H8" />
+<path d="M2 22L9 15" />
+</svg>
+</button>
+
+</div>
+
+    {/* ORIGINAL CHATBAR */}
+    <div className="w-[900px] mt-1">
+      
+    {/* CHAT */}
+        <div className="mb-8">
+          <div
+            className="
+              rounded-2xl
+              border
+              border-white/10
+              bg-white/5
+              px-4
+              py-2
+              flex
+              items-center
+              justify-between
+            "
+          >
+            <div className="flex items-center gap-4">
+
+              <button
+  className="
+    w-[24px]
+    h-[24px]
+    flex
+    items-center
+    justify-center
+    text-[#B8B8B8]
+  "
+>
+                <svg
+  className="
+    transition-transform
+    duration-200
+    ease-out
+    hover:scale-125
+  "
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="2"
+  strokeLinecap="round"
+>
+  <path d="M12 5v14" />
+  <path d="M5 12h14" />
+</svg>
+              </button>
+
+              <button
+                className="
+                  w-[24px]
+                  h-[24px]
+                  flex
+                  items-center
+                  justify-center
+                  hover:scale-110
+                  transition-transform
+                  duration-150
+                  ease-out
+                "
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.6)"
+                  strokeWidth="2"
+                >
+                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3"
+                  />
+                </svg>
+              </button>
+
+            </div>
+
+            <input
+              placeholder="Ask me anything..."
+              className="
+                flex-1
+                mx-4
+                bg-transparent
+                outline-none
+                text-white
+                placeholder:text-white/40
+                text-[15px]
+              "
+            />
+
+            <div className="flex items-center gap-4">
+
+              <button
+                className="
+                  hover:scale-110
+                  transition-transform
+                  duration-150
+                  ease-out
+                "
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.6)"
+                  strokeWidth="2"
+                >
+                  <rect
+                    x="9"
+                    y="2"
+                    width="6"
+                    height="12"
+                    rx="3"
+                  />
+
+                  <path d="M5 10v2a7 7 0 0014 0v-2" />
+                </svg>
+              </button>
+
+              <button
+                className="
+                  w-11
+                  h-11
+                  rounded-full
+                  bg-white
+                  flex
+                  items-center
+                  justify-center
+                  overflow-hidden
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="black"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+  transform: mounted
+    ? "translateY(0)"
+    : "translateY(52px)",
+
+  opacity: mounted
+    ? 1
+    : 0,
+
+  transition:
+    "all 1.25s cubic-bezier(0.16,1,0.3,1)",
+}}
+                >
+                  <path d="M12 5v12" />
+
+                  <path d="M7 10l5-5 5 5" />
+                </svg>
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+)}
+
+        {/* ANALYTICS */}
+{!builderOpen && (
+<div>
+
+          <h2 className="text-lg mb-4">
+            Analytics
+          </h2>
+
+          <div className="grid grid-cols-4 gap-4 mb-14">
+
+            {stats.map((stat, i) => {
+              const val = animatedValues[i];
+
+              const format = () => {
+                if (val === null)
+                  return "";
+
+                if (
+                  stat.type === "money"
+                ) {
+                  return `$${Math.floor(
+                    val
+                  ).toLocaleString()}`;
+                }
+
+                if (
+                  stat.type === "percent"
+                ) {
+                  return `${val.toFixed(
+                    1
+                  )}%`;
+                }
+
+                return Math.floor(
+                  val
+                ).toLocaleString();
+              };
+
+              return (
+                <div
+                  key={i}
+                  className="
+                    h-[95px]
+                    rounded-xl
+                    border
+                    border-white/10
+                    bg-white/5
+                    p-4
+                    flex
+                    flex-col
+                    justify-between
+                  "
+                >
+                  <p className="text-xs text-white/50">
+                    {stat.label}
+                  </p>
+
+                  <p className="text-lg tabular-nums">
+                    {format()}
+                  </p>
+
+                  <p
+                    className={`text-sm ${
+                      stat.positive
+                        ? "text-green-400"
+                        : "text-red-400"
+                    }`}
+                    style={{
+                      transform: mounted
+                        ? "translateY(0)"
+                        : "translateY(12px)",
+
+                      opacity: mounted
+                        ? 1
+                        : 0,
+
+                      transition:
+  "all 0.8s cubic-bezier(0.22,1,0.36,1)",
+                    }}
+                  >
+                    {mounted &&
+                      `${stat.percent > 0 ? "+" : ""}${stat.percent}% vs last month`}
+                  </p>
+                </div>
+              );
+            })}
+
+          </div>
+
+          {/* GRAPH */}
+          <div
+            className="
+              relative
+              h-[340px]
+              rounded-2xl
+              border
+              border-white/10
+              bg-white/5
+              overflow-hidden
+            "
+          >
+            <ResponsiveContainer
+              width="100%"
+              height="100%"
+            >
+              <AreaChart
+                data={data}
+                margin={{
+                  top: 38,
+                  right: 16,
+                  left: 18,
+                  bottom: 38,
+                }}
+              >
+
+                <YAxis
+                  domain={[0, 1400]}
+                  hide
+                />
+
+                {gridVisible && (
+                  <CartesianGrid
+                    stroke="rgba(255,255,255,0.06)"
+                    vertical={false}
+                    horizontal
+                  />
+               )}
+
+                <defs>
+
+                  <linearGradient
+  id="area"
+  x1="0"
+  y1="0"
+  x2="0"
+  y2="1"
+>
+  <stop
+    offset="0%"
+    stopColor="#7202fa"
+    stopOpacity={0.64}
+  />
+
+  <stop
+    offset="25%"
+    stopColor="#7202fa"
+    stopOpacity={0.6}
+  />
+
+  <stop
+    offset="50%"
+    stopColor="#7202fa"
+    stopOpacity={0.46}
+  />
+
+  <stop
+    offset="75%"
+    stopColor="#7202fa"
+    stopOpacity={0.24}
+  />
+
+  <stop
+    offset="92%"
+    stopColor="#7202fa"
+    stopOpacity={0.09}
+  />
+
+  <stop
+    offset="100%"
+    stopColor="#7202fa"
+    stopOpacity={0}
+  />
+</linearGradient>
+                </defs>
+
+                {graphVisible && (
+                  <>
+                    <Area
+                    type="monotone"
+  dataKey="value"
+  baseValue={-180}
+  stroke="none"
+  fill="url(#area)"
+  fillOpacity={1}
+ style={{
+  maskImage: "linear-gradient(to left, transparent 0%, rgba(0,0,0,0.08) 0.4%, rgba(0,0,0,0.18) 1%, rgba(0,0,0,0.35) 2%, rgba(0,0,0,0.6) 3.5%, rgba(0,0,0,0.85) 5.5%, black 8%, black 100%)",
+
+  WebkitMaskImage: "linear-gradient(to left, transparent 0%, rgba(0,0,0,0.08) 0.4%, rgba(0,0,0,0.18) 1%, rgba(0,0,0,0.35) 2%, rgba(0,0,0,0.6) 3.5%, rgba(0,0,0,0.85) 5.5%, black 8%, black 100%)",
+}}
+  isAnimationActive
+  animationBegin={0}
+  animationDuration={1400}
+  animationEasing="ease-out"
+/>
+
+                    <Line
+                      type="monotone"
+                      dataKey="value"
+                      stroke="#8202fa"
+                      strokeWidth={3}
+                      dot={false}
+                      isAnimationActive
+                      animationBegin={0}
+                      animationDuration={1400}
+                      animationEasing="ease-out"
+                    />
+                  </>
+                )}
+
+              </AreaChart>
+            </ResponsiveContainer>
+
+              <div
+  className="
+    absolute
+    inset-0
+    pointer-events-none
+  "
+  style={{
+    background:
+      "radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(0,0,0,0.08) 85%, rgba(0,0,0,0.18) 100%)"
+  }}
+/>
+
+            {showDot && (
+              <div
+                className="absolute"
+                style={{
+                  top: "33px",
+                  right: "16px",
+                }}
+              >
+                <div className="w-[12px] h-[12px] rounded-full bg-white animate-dotPop" />
+              </div>
+            )}
+                    </div>
+
+                </div>
+
+)}
+      
+      </div>
+
+<AnimatePresence>
+  {previewExpanded && (
+  <motion.div
+  className="
+    fixed
+    inset-0
+    z-[999]
+    flex
+    items-center
+    justify-center
+  "
+>
+    <motion.div
+  layoutId="builderPreview"
+  initial={false}
+  exit={{ opacity: 1 }}
+  transition={{
+    layout: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }}
+  className={`
+  w-[92vw]
+  h-[78vh]
+  rounded-[32px]
+  border
+  border-white/10
+  bg-[#0F0F0F]
+  backdrop-blur-xl
+  flex
+  items-center
+  justify-center
+  relative
+ 
+`}
+>
+
+<button
+  onClick={() => {
+setIsClosingPreview(true);
+
+  setTimeout(() => {
+    setPreviewExpanded(false);
+
+    setTimeout(() => {
+  setShowPreviewText(false);
+}, 360);
+
+    // setTimeout(() => {
+//   setShowPreviewText(true);
+// }, 450);
+
+    setTimeout(() => {
+      setIsClosingPreview(false);
+    }, 50);
+  },0);
+}}
+  className="
+    absolute
+    -top-9
+    -right-12
+    w-11
+    h-11
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+  <svg
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="rgb(255,255,255)"
+  opacity="0.4"
+  strokeWidth="2.5"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  className="text-white/40"
+>
+  {/* top-right arrow pointing inward */}
+  <path d="M15 3V9H21" />
+  <path d="M15 9L22 2" />
+
+  <path d="M9 15L3 15" />
+<path d="M9 15L9 21" />
+<path d="M9 15L2 22" />
+</svg>
+</button>
+
+      <motion.div
+  initial={{ opacity: 0 }}
+  animate={{
+  opacity: isClosingPreview ? 0 : 1
+}}
+  exit={{ opacity: 0 }}
+
+  transition={{
+  duration: 0.2,
+  delay: isClosingPreview ? 0 : 0.45,
+}}
+
+  className="text-white/40 text-4xl"
+>
+  App Builder Page
+</motion.div>
+
+    </motion.div>
+  </motion.div>
+)}
+</AnimatePresence>
+
+      <style jsx>{`
+
+      @keyframes appsMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  @keyframes appsMenuOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+}
+
+@keyframes builderZoomOut {
+  from {
+    opacity: 1;
+    transform: translateY(-20px) scale(1);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-20px) scale(0.96);
+  }
+}
+
+.animate-builderZoomOut {
+  animation: builderZoomOut 0.26s ease forwards;
+}
+
+@keyframes builderZoomIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-20px) scale(1);
+  }
+}
+
+.animate-builderZoomIn {
+  animation: builderZoomIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+        @keyframes dotPop {
+          0% {
+            transform: scale(0.6);
+            opacity: 0;
+          }
+
+          60% {
+            transform: scale(1.1);
+            opacity: 1;
+          }
+
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
+        .animate-dotPop {
+          animation: dotPop 0.35s ease-out forwards;
+        }
+      `}</style>
+    </div>
+  );
+}

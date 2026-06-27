@@ -1,21 +1,21 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type = "text", ...props }, ref) => {
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className = "", type = "text", ...props }, ref) => {
     return (
       <input
         ref={ref}
         type={type}
-        className={cn(
-          "w-full rounded-full border border-border bg-white/5 px-4 py-2 text-sm text-white placeholder:text-white/40 shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/30",
-          className
-        )}
+        className={`w-full rounded-full bg-white/5 text-white placeholder:text-neutral-500 px-4 py-2 outline-none border border-white/10 focus:border-white/20 transition ${className}`}
         {...props}
       />
     );
   }
 );
+
 Input.displayName = "Input";
+
+export { Input };
