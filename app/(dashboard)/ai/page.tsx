@@ -7,6 +7,7 @@ import {
   AreaChart,
   Line,
   YAxis,
+  Tooltip,
 } from "recharts";
 
 import {
@@ -177,7 +178,7 @@ const [builderOpen, setBuilderOpen] =
   <div
     className="
       h-11
-      rounded-xl
+      rounded-2xl
       border
       border-white/10
       bg-white/5
@@ -328,7 +329,7 @@ strokeLinejoin="round"
         w-full
         h-11
         px-3
-        rounded-xl
+        rounded-2xl
         text-white/40
         hover:bg-white/5
         hover:text-white/70
@@ -471,7 +472,21 @@ style={{
     
 
         {builderOpen && (
-          <div className="flex flex-col items-center gap-6 pt-24">
+  <motion.div
+    initial={{
+      opacity: 0,
+      y: 18,
+    }}
+    animate={{
+      opacity: 1,
+      y: 0,
+    }}
+    transition={{
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    className="flex flex-col items-center gap-6 pt-24"
+  >
 
     {/* PREVIEW */}
     <div
@@ -528,7 +543,7 @@ style={{
   </motion.div>
 ) : (
   <>
-    <div className="w-full h-full p-8 flex flex-col">
+    <div className="w-full h-full p-6 pt-2 flex flex-col">
 
   <div className="mb-5">
 
@@ -552,9 +567,9 @@ style={{
 }}
       className="
         relative
-        w-[210px]
-        h-[120px]
-        mx-auto mt-3
+        w-[190px]
+        h-[100px]
+        mx-auto mt-4
         scale-[1.2]
         rounded-2xl
         border
@@ -661,53 +676,97 @@ style={{
 
   </div>
 
-  <div className="flex flex-col gap-5">
+  <div className="flex flex-col gap-8 mt-4">
 
-    <div>
-      <div className="text-white/40 text-sm mb-2">
-        App Name
-      </div>
+  <div>
+  <input
+    placeholder="App Name"
+    className="
+      w-full
+      h-10
+      rounded-2xl
+      bg-white/5
+      border
+      border-white/10
+      px-4
+      text-white/40
+      placeholder:text-white/40
+      outline-none
+    "
+  />
+</div>
 
-      <input
-        placeholder="My App"
-        className="
-          w-full
-          h-12
-          rounded-xl
-          bg-white/5
-          border
-          border-white/10
-          px-4
-          text-white/40
-          placeholder:text-white/40
-          outline-none
-        "
-      />
-    </div>
+  <div>
+  <input
+    placeholder="Price"
+    className="
+      w-full
+      h-10
+      rounded-2xl
+      bg-white/5
+      border
+      border-white/10
+      px-4
+      text-white/40
+      placeholder:text-white/40
+      outline-none
+    "
+  />
+</div>
 
-    <div>
-      <div className="text-white/40 text-sm mb-2">
-        Price
-      </div>
+  <div>
+  <input
+    placeholder="#"
+    className="
+      w-full
+      h-10
+      rounded-2xl
+      bg-white/5
+      border
+      border-white/10
+      px-4
+      text-white/40
+      placeholder:text-white/40
+      outline-none
+    "
+  />
+</div>
 
-      <input
-        placeholder="$4.99 / month"
-        className="
-          w-full
-          h-12
-          rounded-xl
-          bg-white/5
-          border
-          border-white/10
-          px-4
-          text-white/40
-          placeholder:text-white/40
-          outline-none
-          "
-        />
-    </div>
+<div className="flex justify-center -mt-3">
 
-  </div>
+  <button
+    className="
+      w-16
+      h-10
+      rounded-full
+      bg-white
+      flex
+      items-center
+      justify-center
+      overflow-hidden
+      transition-transform
+      duration-200
+      hover:scale-105
+      active:scale-95
+    "
+  >
+    <svg
+      width="24"
+      height="24"
+      fill="none"
+      stroke="black"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 5v12" />
+      <path d="M7 10l5-5 5 5" />
+    </svg>
+  </button>
+
+</div>
+
+</div>
 
 </div>
   </>
@@ -817,10 +876,10 @@ style={{
   onClick={() => router.push("/builder")}
   className="
     absolute
-    -top-16
+    -top-[55px]
     left-[24px]
     w-11
-    h-11
+    h-9
     rounded-full
     border
     border-white/10
@@ -855,10 +914,10 @@ style={{
   }}
   className="
     absolute
-    -top-16
-    left-[93px]
+    -top-[55px]
+    left-[95px]
     w-11
-    h-11
+    h-9
     rounded-full
     border
     border-white/10
@@ -897,10 +956,10 @@ style={{
   }}
   className="
     absolute
-    -top-16
-    left-[163px]
+    -top-[55px]
+    left-[166px]
     w-11
-    h-11
+    h-9
     rounded-full
     border
     border-white/10
@@ -1068,25 +1127,28 @@ onClick={() => {
     text-[#B8B8B8]
   "
 >
-                <svg
-  className="
-    transition-transform
-    duration-200
-    ease-out
-    hover:scale-125
-  "
-  width="20"
-  height="20"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  strokeWidth="2"
-  strokeLinecap="round"
->
-  <path d="M12 5v14" />
-  <path d="M5 12h14" />
-</svg>
-              </button>
+  <svg
+    className="
+      transition-transform
+      duration-200
+      ease-out
+      hover:scale-125
+    "
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      d="M12 5V19M5 12H19"
+      stroke="rgb(255,255,255)"
+      opacity="0.4"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+</button>
 
               <button
                 className="
@@ -1106,7 +1168,8 @@ onClick={() => {
                   height="22"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="rgba(255,255,255,0.6)"
+                  stroke="rgb(255,255,255)"
+                  opacity="0.4"
                   strokeWidth="2"
                 >
                   <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
@@ -1148,7 +1211,8 @@ onClick={() => {
                   width="20"
                   height="20"
                   fill="none"
-                  stroke="rgba(255,255,255,0.6)"
+                  stroke="rgb(255,255,255)"
+                  opacity="0.4"
                   strokeWidth="2"
                 >
                   <rect
@@ -1165,8 +1229,8 @@ onClick={() => {
 
               <button
                 className="
-                  w-11
-                  h-11
+                  w-14
+                  h-10
                   rounded-full
                   bg-white
                   flex
@@ -1208,7 +1272,7 @@ onClick={() => {
 
     </div>
 
-  </div>
+  </motion.div>
 )}
 
         {/* ANALYTICS */}
@@ -1331,6 +1395,15 @@ onClick={() => {
                   hide
                 />
 
+                <Tooltip
+  trigger="click"
+  cursor={false}
+  content={() => null}
+  wrapperStyle={{ display: "none" }}
+  itemStyle={{ display: "none" }}
+  labelStyle={{ display: "none" }}
+/>
+
                 {gridVisible && (
                   <CartesianGrid
                     stroke="rgba(255,255,255,0.06)"
@@ -1405,18 +1478,22 @@ onClick={() => {
   animationDuration={1400}
   animationEasing="ease-out"
 />
+            
+<Line
+  type="monotone"
+  dataKey="value"
+  stroke="#8202fa"
+  strokeWidth={3}
+  dot={false}
+  isAnimationActive
+  animationBegin={0}
+  animationDuration={1400}
+  animationEasing="ease-out"
+  style={{
+    transform: "translateY(-1px)",
+  }}
+/>
 
-                    <Line
-                      type="monotone"
-                      dataKey="value"
-                      stroke="#8202fa"
-                      strokeWidth={3}
-                      dot={false}
-                      isAnimationActive
-                      animationBegin={0}
-                      animationDuration={1400}
-                      animationEasing="ease-out"
-                    />
                   </>
                 )}
 
@@ -1439,7 +1516,7 @@ onClick={() => {
               <div
                 className="absolute"
                 style={{
-                  top: "33px",
+                  top: "31px",
                   right: "16px",
                 }}
               >
