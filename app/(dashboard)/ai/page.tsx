@@ -227,15 +227,30 @@ const [builderOpen, setBuilderOpen] =
       {/* MAIN */}
       <div className="flex-1 p-6 overflow-y-auto">
 
-        {activeSection === "templates" && (
-  <div
-    className="
-      h-full
-      flex
-      items-center
-      justify-center
-    "
-  >
+{activeSection === "templates" && (
+        <motion.div
+  initial={{
+    opacity: 0,
+    y: 12,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  style={{
+    willChange: "transform, opacity",
+  }}
+  className="
+    h-full
+    flex
+    items-center
+    justify-center
+  "
+>
     <div className="text-center">
       <h1 className="text-3xl font-medium text-white">
         Templates
@@ -245,7 +260,100 @@ const [builderOpen, setBuilderOpen] =
         Templates page coming soon.
       </p>
     </div>
-  </div>
+  </motion.div>
+)}
+
+{activeSection === "account" && (
+  <motion.div
+  initial={{
+    opacity: 0,
+    y: 12,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  style={{
+    willChange: "transform, opacity",
+  }}
+  className="h-full flex items-center justify-center"
+>
+    <div className="text-center">
+      <h1 className="text-3xl font-medium text-white">
+        Account
+      </h1>
+
+      <p className="mt-2 text-white/40">
+        Account page coming soon.
+      </p>
+    </div>
+  </motion.div>
+)}
+
+{activeSection === "settings" && (
+  <motion.div
+  initial={{
+    opacity: 0,
+    y: 12,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  style={{
+    willChange: "transform, opacity",
+  }}
+  className="h-full flex items-center justify-center"
+>
+    <div className="text-center">
+      <h1 className="text-3xl font-medium text-white">
+        Settings
+      </h1>
+
+      <p className="mt-2 text-white/40">
+        Settings page coming soon.
+      </p>
+    </div>
+  </motion.div>
+)}
+
+{activeSection === "notifications" && (
+  <motion.div
+  initial={{
+    opacity: 0,
+    y: 12,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  style={{
+    willChange: "transform, opacity",
+  }}
+  className="h-full flex items-center justify-center"
+>
+    <div className="text-center">
+      <h1 className="text-3xl font-medium text-white">
+        Notifications
+      </h1>
+
+      <p className="mt-2 text-white/40">
+        Notifications page coming soon.
+      </p>
+    </div>
+  </motion.div>
 )}
 
         {/* CHAT */}
