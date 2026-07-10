@@ -91,6 +91,24 @@ export default function AIPage() {
   const [cardVisible, setCardVisible] = useState(true);
   const [thumbnail, setThumbnail] = useState<File | null>(null);
   const [thumbnailUrl, setThumbnailUrl] = useState("");
+  const [chatInput, setChatInput] = useState("");
+  const [appName, setAppName] = useState("");
+  const [price, setPrice] = useState("");
+  const [tag, setTag] = useState("");
+  const canLaunchApp =
+  thumbnail !== null &&
+  appName.trim().length > 0 &&
+  price.trim().length > 0 &&
+  tag.trim().length > 0;
+
+console.log({
+  thumbnail,
+  appName,
+  price,
+  tag,
+  canLaunchApp,
+});
+
   const [activeSection, setActiveSection] = useState<
   | "dashboard"
   | "templates"
@@ -99,7 +117,20 @@ export default function AIPage() {
   | "notifications"
 >("dashboard");
 
-  useEffect(() => {
+  const [graphVisible, setGraphVisible] =
+    useState(false);
+
+  const [showDot, setShowDot] =
+    useState(false);
+
+  const initialized = useRef(false);
+
+const [gridVisible, setGridVisible] = useState(false);
+
+const [builderOpen, setBuilderOpen] =
+  useState(false);
+
+useEffect(() => {
   const handleKeyDown = (e: KeyboardEvent) => {
     // Ignore typing inside inputs/textareas
     const target = e.target as HTMLElement;
@@ -111,6 +142,8 @@ export default function AIPage() {
     ) {
       return;
     }
+
+    if (builderOpen) return;
 
     switch (e.key.toLowerCase()) {
   case "d":
@@ -140,20 +173,7 @@ export default function AIPage() {
   return () => {
     window.removeEventListener("keydown", handleKeyDown);
   };
-}, [router]);
-
-  const [graphVisible, setGraphVisible] =
-    useState(false);
-
-  const [showDot, setShowDot] =
-    useState(false);
-
-  const initialized = useRef(false);
-
-const [gridVisible, setGridVisible] = useState(false);
-
-const [builderOpen, setBuilderOpen] =
-  useState(false);
+}, [router, builderOpen]);
 
   useEffect(() => {
     if (initialized.current) return;
@@ -357,6 +377,26 @@ const [builderOpen, setBuilderOpen] =
 )}
 
         {/* CHAT */}
+
+        <motion.div
+  key="dashboard"
+  initial={{
+    opacity: 0,
+    y: 12,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  style={{
+    willChange: "transform, opacity",
+  }}
+></motion.div>
+
 {!builderOpen && (
  <div className="mb-8">
   <button
@@ -614,76 +654,85 @@ const [builderOpen, setBuilderOpen] =
 
   <div>
   <input
-    placeholder="App Name"
-    className="
-      w-full
-      h-10
-      rounded-2xl
-      bg-white/5
-      border
-      border-white/10
-      px-4
-      text-white/40
-      placeholder:text-white/40
-      outline-none
-    "
-  />
+  value={appName}
+  onChange={(e) => setAppName(e.target.value)}
+  placeholder="App Name"
+  className="
+    w-full
+    h-10
+    rounded-2xl
+    bg-white/5
+    border
+    border-white/10
+    px-4
+    text-white/40
+    placeholder:text-white/40
+    outline-none
+  "
+/>
 </div>
 
   <div>
   <input
-    placeholder="Price"
-    className="
-      w-full
-      h-10
-      rounded-2xl
-      bg-white/5
-      border
-      border-white/10
-      px-4
-      text-white/40
-      placeholder:text-white/40
-      outline-none
-    "
-  />
+  value={price}
+  onChange={(e) => setPrice(e.target.value)}
+  placeholder="Price"
+  className="
+    w-full
+    h-10
+    rounded-2xl
+    bg-white/5
+    border
+    border-white/10
+    px-4
+    text-white/40
+    placeholder:text-white/40
+    outline-none
+  "
+/>
 </div>
 
   <div>
   <input
-    placeholder="#"
-    className="
-      w-full
-      h-10
-      rounded-2xl
-      bg-white/5
-      border
-      border-white/10
-      px-4
-      text-white/40
-      placeholder:text-white/40
-      outline-none
-    "
-  />
+  value={tag}
+  onChange={(e) => setTag(e.target.value)}
+  placeholder="#"
+  className="
+    w-full
+    h-10
+    rounded-2xl
+    bg-white/5
+    border
+    border-white/10
+    px-4
+    text-white/40
+    placeholder:text-white/40
+    outline-none
+  "
+/>
 </div>
 
 <div className="flex justify-center -mt-3">
 
   <button
-    className="
-      w-16
-      h-10
-      rounded-full
-      bg-white
-      flex
-      items-center
-      justify-center
-      overflow-hidden
-      transition-transform
-      duration-200
-      hover:scale-105
-      active:scale-95
-    "
-  >
+  disabled={!canLaunchApp}
+  className={`
+    w-16
+    h-10
+    rounded-full
+    flex
+    items-center
+    justify-center
+    overflow-hidden
+    transition-all
+    duration-200
+    ${
+      canLaunchApp
+        ? "bg-white hover:scale-105 active:scale-95 cursor-pointer"
+        : "bg-white/20 cursor-not-allowed"
+    }
+  `}
+>
     <svg
       width="24"
       height="24"
@@ -1119,17 +1168,19 @@ onClick={() => {
             </div>
 
             <input
-              placeholder="Ask me anything..."
-              className="
-                flex-1
-                mx-4
-                bg-transparent
-                outline-none
-                text-white
-                placeholder:text-white/40
-                text-[15px]
-              "
-            />
+  value={chatInput}
+  onChange={(e) => setChatInput(e.target.value)}
+  placeholder="Ask me anything..."
+  className="
+    flex-1
+    mx-4
+    bg-transparent
+    outline-none
+    text-white
+    placeholder:text-white/40
+    text-[15px]
+  "
+/>
 
             <div className="flex items-center gap-4">
 
@@ -1162,17 +1213,24 @@ onClick={() => {
               </button>
 
               <button
-                className="
-                  w-14
-                  h-10
-                  rounded-full
-                  bg-white
-                  flex
-                  items-center
-                  justify-center
-                  overflow-hidden
-                "
-              >
+  disabled={chatInput.trim().length === 0}
+  className={`
+    w-14
+    h-10
+    rounded-full
+    flex
+    items-center
+    justify-center
+    overflow-hidden
+    transition-all
+    duration-200
+    ${
+      chatInput.trim().length > 0
+        ? "bg-white hover:scale-105 active:scale-95 cursor-pointer"
+        : "bg-white/20 cursor-not-allowed"
+    }
+  `}
+>
                 <svg
                   width="24"
                   height="24"
