@@ -125,27 +125,29 @@ export default function BottomNav() {
           {/* ROBOT */}
           <div className="w-[72px] h-[36px] shrink-0 flex items-center justify-center">
             <Link
-              href="/ai"
-              prefetch={true}
-              scroll={false}
-              onMouseEnter={() => {
-                router.prefetch("/ai");
-              }}
-              onTouchStart={() => {
-                router.prefetch("/ai");
-              }}
-              
-                
-              className="
-                relative
-                z-10
-                w-full
-                h-full
-                flex
-                items-center
-                justify-center
-              "
-            >
+  href="/ai"
+  prefetch={true}
+  scroll={false}
+  onMouseEnter={() => {
+    router.prefetch("/ai");
+  }}
+  onTouchStart={() => {
+    router.prefetch("/ai");
+  }}
+  onClick={(e) => {
+    e.preventDefault();
+    router.push("/ai");
+  }}
+  className="
+    relative
+    z-10
+    w-full
+    h-full
+    flex
+    items-center
+    justify-center
+  "
+>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
