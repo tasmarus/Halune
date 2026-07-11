@@ -8,7 +8,7 @@ const navItems = [
   { href: "/analytics", label: "Analytics", icon: BarChart2 },
 ];
 
-export function Sidebar() {
+export default function Sidebar() {
   return (
     <aside className="sticky top-0 hidden h-screen w-72 flex-col gap-6 border-r border-border bg-background/80 px-6 py-8 backdrop-blur-md md:flex">
       <div className="flex items-center gap-3">

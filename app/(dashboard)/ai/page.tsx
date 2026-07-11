@@ -101,14 +101,6 @@ export default function AIPage() {
   price.trim().length > 0 &&
   tag.trim().length > 0;
 
-console.log({
-  thumbnail,
-  appName,
-  price,
-  tag,
-  canLaunchApp,
-});
-
   const [activeSection, setActiveSection] = useState<
   | "dashboard"
   | "templates"
@@ -377,25 +369,6 @@ useEffect(() => {
 )}
 
         {/* CHAT */}
-
-        <motion.div
-  key="dashboard"
-  initial={{
-    opacity: 0,
-    y: 12,
-  }}
-  animate={{
-    opacity: 1,
-    y: 0,
-  }}
-  transition={{
-    duration: 0.5,
-    ease: [0.22, 1, 0.36, 1],
-  }}
-  style={{
-    willChange: "transform, opacity",
-  }}
-></motion.div>
 
 {!builderOpen && (
  <div className="mb-8">
