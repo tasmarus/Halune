@@ -1,7 +1,14 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function BuilderPage() {
-  redirect("/ai");
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/ai");
+  }, [router]);
+
+  return null;
 }
