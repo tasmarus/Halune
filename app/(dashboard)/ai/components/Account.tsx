@@ -42,127 +42,176 @@ export default function Account() {
           Manage your account and billing.
         </p>
 
-        <div className="mt-6 space-y-6">
-          <div>
-            <p className="text-sm text-white/50 mb-2">
-              Email
-            </p>
+      <div className="mt-6 space-y-6">
 
-            <input
-              placeholder="sam@example.com"
-              className="
-                w-full
-                h-12
-                rounded-2xl
-                bg-white/5
-                border
-                border-white/10
-                px-4
-                text-white
-                placeholder:text-white/40
-                outline-none
-                focus:border-white/20
-              "
-            />
-          </div>
+  {/* Email */}
+  <div>
+    <p className="text-sm text-white/50 mb-2">Email</p>
 
-          <div>
-            <p className="text-sm text-white/50 mb-2">
-              Password
-            </p>
+    <input
+      placeholder="sam@example.com"
+      className="
+        w-full
+        h-12
+        rounded-2xl
+        bg-white/5
+        border
+        border-white/10
+        px-4
+        text-white
+        placeholder:text-white/40
+        outline-none
+        focus:border-white/20
+      "
+    />
+  </div>
 
-            <input
-              type="password"
-              placeholder="••••••••••"
-              className="
-                w-full
-                h-12
-                rounded-2xl
-                bg-white/5
-                border
-                border-white/10
-                px-4
-                text-white
-                placeholder:text-white/40
-                outline-none
-                focus:border-white/20
-              "
-            />
-          </div>
+  {/* Password */}
+  <div>
+    <p className="text-sm text-white/50 mb-2">Password</p>
 
-          <div>
-            <p className="text-sm text-white/50 mb-2">
-              Card Number
-            </p>
+    <input
+      type="password"
+      placeholder="••••••••••"
+      className="
+        w-full
+        h-12
+        rounded-2xl
+        bg-white/5
+        border
+        border-white/10
+        px-4
+        text-white
+        placeholder:text-white/40
+        outline-none
+        focus:border-white/20
+      "
+    />
+  </div>
 
-            <input
-              placeholder="•••• •••• •••• 4242"
-              className="
-                w-full
-                h-12
-                rounded-2xl
-                bg-white/5
-                border
-                border-white/10
-                px-4
-                text-white
-                placeholder:text-white/40
-                outline-none
-                focus:border-white/20
-              "
-            />
-          </div>
+  {/* Card Number */}
+  <div>
+    <p className="text-sm text-white/50 mb-2">Card Number</p>
 
-          <div>
-            <p className="text-sm text-white/50 mb-2">
-              Subscription
-            </p>
+    <input
+      placeholder="•••• •••• •••• 4242"
+      className="
+        w-full
+        h-12
+        rounded-2xl
+        bg-white/5
+        border
+        border-white/10
+        px-4
+        text-white
+        placeholder:text-white/40
+        outline-none
+        focus:border-white/20
+      "
+    />
+  </div>
 
-            <div
-              className="
-                h-12
-                rounded-2xl
-                border
-                border-white/10
-                bg-white/5
-                px-4
-                flex
-                items-center
-                text-white/40
-              "
-            >
-              Halune Pro
-            </div>
-          </div>
-        </div>
+  {/* Subscription */}
+  <div>
+    <p className="text-sm text-white/50 mb-2">
+      Subscription
+    </p>
 
-        <div
-          className="flex mt-6"
-          style={{
-            justifyContent: "center",
-            width: "100%",
-          }}
+    <div className="relative">
+
+      <div
+        className="
+          h-12
+          rounded-2xl
+          border
+          border-white/10
+          bg-white/5
+          px-4
+          flex
+          items-center
+          text-white/40
+        "
+      >
+        Halune Pro
+      </div>
+
+      <div
+        className="
+          absolute
+          right-3
+          top-1/2
+          -translate-y-1/2
+          flex
+          items-center
+          gap-3
+        "
+      >
+        <button
+          className="
+            h-9
+            px-5
+            rounded-full
+            border
+            border-white/10
+            bg-[#111111]
+            text-white
+            text-sm
+            font-medium
+          "
         >
-          <button
-            style={{
-              transform: "translate(-10px, 4px)",
-            }}
-            className="
-              h-12
-              px-8
-              rounded-full
-              bg-white
-              text-black
-              font-medium
-              hover:scale-105
-              active:scale-95
-              transition-all
-              duration-200
-            "
-          >
-            Save Changes
-          </button>
-        </div>
+          Change Plan
+        </button>
+
+        <button
+          className="
+            h-9
+            px-5
+            rounded-full
+            border
+            border-red-500/70
+            bg-[#111111]
+            text-red-500
+            text-sm
+            font-medium
+          "
+        >
+          Cancel
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div
+  className="flex mt-6"
+  style={{
+    justifyContent: "center",
+    width: "100%",
+  }}
+>
+  <button
+    style={{
+      transform: "translate(-10px, 4px)",
+    }}
+    className="
+      h-12
+      px-3
+      rounded-full
+      bg-white
+      text-black
+      font-medium
+      hover:scale-105
+      active:scale-95
+      transition-all
+      duration-200
+    "
+  >
+    Save Changes
+  </button>
+</div>
+
       </div>
     </motion.div>
   );
