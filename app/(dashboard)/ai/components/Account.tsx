@@ -205,7 +205,9 @@ const [showPlanModal, setShowPlanModal] = useState(false);
     }}
     className="
       h-12
-      px-3
+      w-[140px]
+
+      px-2
       rounded-full
       bg-white
       text-black
@@ -239,8 +241,10 @@ const [showPlanModal, setShowPlanModal] = useState(false);
     absolute
     -top-14
     -right-14
+    translate-y-6
+   -translate-x-4
     w-10
-    h-10
+    h-9
     rounded-full
     border
     border-white/10
@@ -281,6 +285,7 @@ const [showPlanModal, setShowPlanModal] = useState(false);
           }}
           className="
   relative
+  h-[180px]
   w-[430px]
   rounded-3xl
   border
@@ -299,8 +304,11 @@ const [showPlanModal, setShowPlanModal] = useState(false);
 
         <div className="flex justify-end mt-8">
           <button
+          style={{
+  transform: "translateY(-38px)",
+}}
             className="
-              h-10
+              h-9
               px-5
               rounded-full
               border
@@ -337,8 +345,10 @@ const [showPlanModal, setShowPlanModal] = useState(false);
             absolute
             -top-14
             -right-11
+            translate-y-6
+          -translate-x-0.5
             w-10
-            h-10
+            h-9
             rounded-full
             border
             border-white/10
@@ -480,56 +490,133 @@ const [showPlanModal, setShowPlanModal] = useState(false);
     className="text-white/35 shrink-0"
     strokeWidth={2}
   />
-  <span>Publish 3 AI apps</span>
+  <span>Launch 3 AI apps</span>
 </div>
   </div>
 </div>
 
 
   <div
-  className="
-    rounded-3xl
-    border
-    border-white/10
-    bg-white/[0.04]
-    h-[600px]
-    px-7
-    pt-4
-    pb-7
-    flex
-    flex-col
-  "
+ className="
+  rounded-3xl
+  border
+  border-white/10
+  bg-white/[0.04]
+  h-[350px]
+  px-7
+  pt-4
+  pb-7
+  flex
+  flex-col
+"
 >
-  <h2 className="text-[1.7rem] font-semibold text-white">
-    Premium
+<h2 className="text-[1.7rem] font-semibold text-white -mt-2">
+      Pro
   </h2>
 
-  <div className="mt-2 -mb-2 flex items-end gap-1">
+  <div className="mt-0.5 flex items-end gap-1">
     <span className="text-[2.8rem] font-semibold text-white">
-      $30
+      $10
     </span>
 
-    <span className="text-white/50 mb-[7px]">
+<span className="text-white/50 mb-[7px]">
       / month
     </span>
   </div>
 
-  <p className="mt-4 text-white font-medium">
-    Maximum power for professionals.
-  </p>
-
   <button
+  style={{
+  transform: "translateY(-36px)",
+}}
     className="
-      mt-8
+      mt-10
       h-11
       rounded-full
+      border
+      border-white
       bg-white
       text-black
       font-medium
-      hover:scale-[1.02]
-      active:scale-95
-      transition-all
-      duration-200
+      cursor-default
+    "
+  >
+    Upgrade to Pro
+  </button>
+
+  <div
+    style={{
+      transform: "translateY(-28px)",
+    }}
+    className="mt-1 space-y-4 text-[15px] text-white/80"
+  >
+    <div className="text-white/80 font-medium mb-2">
+  Everything in Free
+</div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>30 AI generations / day</span>
+    </div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>Pro Templates</span>
+    </div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>Pro Analytics</span>
+    </div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>Launch 10 AI apps</span>
+    </div>
+  </div>
+</div>
+
+   <div
+ className="
+  rounded-3xl
+  border
+  border-white/10
+  bg-white/[0.04]
+  h-[350px]
+  px-7
+  pt-4
+  pb-7
+  flex
+  flex-col
+"
+>
+<h2 className="text-[1.7rem] font-semibold text-white -mt-2">
+      Premium
+  </h2>
+
+  <div className="mt-0.5 flex items-end gap-1">
+    <span className="text-[2.8rem] font-semibold text-white">
+      $30
+    </span>
+
+<span className="text-white/50 mb-[7px]">
+      / month
+    </span>
+  </div>
+
+  <button
+  style={{
+  transform: "translateY(-36px)",
+}}
+    className="
+      mt-10
+      h-11
+      rounded-full
+      border
+      border-white
+      bg-white
+      text-black
+      font-medium
+      cursor-default
     "
   >
     Upgrade to Premium
@@ -537,13 +624,13 @@ const [showPlanModal, setShowPlanModal] = useState(false);
 
   <div
     style={{
-      transform: "translateY(-18px)",
+      transform: "translateY(-28px)",
     }}
     className="mt-1 space-y-4 text-[15px] text-white/80"
   >
-    <div className="text-white font-medium mb-2">
-      Everything in Pro
-    </div>
+    <div className="text-white/80 font-medium mb-2">
+  Everything in Pro
+</div>
 
     <div className="flex items-center gap-3">
       <CheckCircle2 size={16} className="text-white/35 shrink-0" />
@@ -552,35 +639,20 @@ const [showPlanModal, setShowPlanModal] = useState(false);
 
     <div className="flex items-center gap-3">
       <CheckCircle2 size={16} className="text-white/35 shrink-0" />
-      <span>Premium AI models</span>
-    </div>
-
-    <div className="flex items-center gap-3">
-      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
-      <span>Early access to new features</span>
-    </div>
-
-    <div className="flex items-center gap-3">
-      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
-      <span>Priority support</span>
+      <span>Premium templates</span>
     </div>
 
     <div className="flex items-center gap-3">
       <CheckCircle2 size={16} className="text-white/35 shrink-0" />
       <span>Unlimited cloud storage</span>
     </div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>Launch 30 AI apps</span>
+    </div>
   </div>
 </div>
-
-  <div
-    className="
-      rounded-3xl
-      border
-      border-white/10
-      bg-white/[0.04]
-      h-[350px]
-    "
-  />
 
 </div>
 
