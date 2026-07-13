@@ -1,8 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 export default function Account() {
+
+const [showCancelModal, setShowCancelModal] = useState(false);
+
+const [showPlanModal, setShowPlanModal] = useState(false);
+
   return (
     <motion.div
       initial={{
@@ -147,7 +153,8 @@ export default function Account() {
         "
       >
         <button
-          className="
+  onClick={() => setShowPlanModal(true)}
+  className="
             h-9
             px-5
             rounded-full
@@ -163,6 +170,7 @@ export default function Account() {
         </button>
 
         <button
+  onClick={() => setShowCancelModal(true)}
           className="
             h-9
             px-5
@@ -213,6 +221,376 @@ export default function Account() {
 </div>
 
       </div>
+
+<AnimatePresence>
+  {showCancelModal && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+    >
+
+<div className="relative">
+
+      <button
+  onClick={() => setShowCancelModal(false)}
+  className="
+    absolute
+    -top-14
+    -right-14
+    w-10
+    h-10
+    rounded-full
+    border
+    border-white/10
+    bg-[#111111]
+    text-white/70
+    hover:text-white
+    hover:border-white/20
+    transition-all
+    duration-200
+    flex
+    items-center
+    justify-center
+  "
+>
+  <svg
+  width="20"
+  height="20"
+  viewBox="0 0 24 24"
+  fill="none"
+>
+  <path
+    d="M7 7L17 17M17 7L7 17"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    vectorEffect="non-scaling-stroke"
+  />
+</svg>
+</button>
+
+        <motion.div
+          initial={{ scale: 0.96, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.96, opacity: 0 }}
+          transition={{
+            duration: 0.25,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="
+  relative
+  w-[430px]
+  rounded-3xl
+  border
+  border-white/10
+  bg-[#0E0E0E]
+  p-8
+"
+        >
+        <h2 className="text-xl font-medium text-white">
+          Cancel Subscription
+        </h2>
+
+        <p className="mt-3 text-white/50 leading-relaxed">
+          Are you sure you want to cancel your Halune Pro subscription?
+        </p>
+
+        <div className="flex justify-end mt-8">
+          <button
+            className="
+              h-10
+              px-5
+              rounded-full
+              border
+              border-red-500/70
+              text-red-500
+              font-medium
+            "
+          >
+            Cancel
+          </button>
+                </div>
+      </motion.div>
+
+      </div>
+
+      </motion.div>
+  )}
+</AnimatePresence>
+
+<AnimatePresence>
+  {showPlanModal && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+    >
+      <div className="relative">
+
+        {/* Close button */}
+        <button
+          onClick={() => setShowPlanModal(false)}
+          className="
+            absolute
+            -top-14
+            -right-11
+            w-10
+            h-10
+            rounded-full
+            border
+            border-white/10
+            bg-[#111111]
+            text-white/70
+            hover:text-white
+            hover:border-white/20
+            transition-all
+            duration-200
+            flex
+            items-center
+            justify-center
+          "
+        >
+          ✕
+        </button>
+
+        <motion.div
+          initial={{ scale: 0.96, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.96, opacity: 0 }}
+          transition={{
+            duration: 0.25,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="
+            w-[950px]
+            h-[600px]
+            rounded-3xl
+            border
+            border-white/10
+            bg-[#0E0E0E]
+            p-10
+          "
+        >
+
+          <h1 className="text-4xl font-medium text-white text-center">
+            Choose your plan
+          </h1>
+
+          <p className="text-center text-white/40 mt-3">
+            Upgrade or downgrade your Halune subscription.
+          </p>
+
+          <div className="mt-8 grid grid-cols-3 gap-8">
+
+ <div
+ className="
+  rounded-3xl
+  border
+  border-white/10
+  bg-white/[0.04]
+  h-[350px]
+  px-7
+  pt-4
+  pb-7
+  flex
+  flex-col
+"
+>
+<h2 className="text-[1.7rem] font-semibold text-white -mt-2">
+      Free
+  </h2>
+
+  <div className="mt-0.5 flex items-end gap-1">
+    <span className="text-[2.8rem] font-semibold text-white">
+      $0
+    </span>
+
+<span className="text-white/50 mb-[7px]">
+      / month
+    </span>
+  </div>
+
+  <button
+  style={{
+  transform: "translateY(-36px)",
+}}
+    className="
+      mt-10
+      h-11
+      rounded-full
+      border
+      border-white/10
+      bg-white/5
+      text-white/40
+      font-medium
+      cursor-default
+    "
+  >
+    Current Plan
+  </button>
+
+<div
+  style={{
+    transform: "translateY(-26px)",
+  }}
+  className="mt-1 space-y-4 text-[14px] text-white/80"
+>
+<div className="flex items-center gap-3">
+  <CheckCircle2
+    size={16}
+    className="text-white/35 shrink-0"
+    strokeWidth={2}
+  />
+  <span>Browse AI Marketplace</span>
+</div>
+
+<div className="flex items-center gap-3">
+  <CheckCircle2
+    size={16}
+    className="text-white/35 shrink-0"
+    strokeWidth={2}
+  />
+  <span>Build AI Apps</span>
+</div>
+
+<div className="flex items-center gap-3">
+  <CheckCircle2
+    size={16}
+    className="text-white/35 shrink-0"
+    strokeWidth={2}
+  />
+  <span>Community Templates</span>
+</div>
+
+<div className="flex items-center gap-3">
+  <CheckCircle2
+    size={16}
+    className="text-white/35 shrink-0"
+    strokeWidth={2}
+  />
+  <span>Basic Analytics</span>
+</div>
+
+<div className="flex items-center gap-3">
+  <CheckCircle2
+    size={16}
+    className="text-white/35 shrink-0"
+    strokeWidth={2}
+  />
+  <span>Publish 3 AI apps</span>
+</div>
+  </div>
+</div>
+
+
+  <div
+  className="
+    rounded-3xl
+    border
+    border-white/10
+    bg-white/[0.04]
+    h-[600px]
+    px-7
+    pt-4
+    pb-7
+    flex
+    flex-col
+  "
+>
+  <h2 className="text-[1.7rem] font-semibold text-white">
+    Premium
+  </h2>
+
+  <div className="mt-2 -mb-2 flex items-end gap-1">
+    <span className="text-[2.8rem] font-semibold text-white">
+      $30
+    </span>
+
+    <span className="text-white/50 mb-[7px]">
+      / month
+    </span>
+  </div>
+
+  <p className="mt-4 text-white font-medium">
+    Maximum power for professionals.
+  </p>
+
+  <button
+    className="
+      mt-8
+      h-11
+      rounded-full
+      bg-white
+      text-black
+      font-medium
+      hover:scale-[1.02]
+      active:scale-95
+      transition-all
+      duration-200
+    "
+  >
+    Upgrade to Premium
+  </button>
+
+  <div
+    style={{
+      transform: "translateY(-18px)",
+    }}
+    className="mt-1 space-y-4 text-[15px] text-white/80"
+  >
+    <div className="text-white font-medium mb-2">
+      Everything in Pro
+    </div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>Unlimited AI generations</span>
+    </div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>Premium AI models</span>
+    </div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>Early access to new features</span>
+    </div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>Priority support</span>
+    </div>
+
+    <div className="flex items-center gap-3">
+      <CheckCircle2 size={16} className="text-white/35 shrink-0" />
+      <span>Unlimited cloud storage</span>
+    </div>
+  </div>
+</div>
+
+  <div
+    className="
+      rounded-3xl
+      border
+      border-white/10
+      bg-white/[0.04]
+      h-[350px]
+    "
+  />
+
+</div>
+
+        </motion.div>
+
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </motion.div>
   );
 }
