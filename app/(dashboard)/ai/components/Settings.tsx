@@ -522,6 +522,70 @@ const [selectedSection, setSelectedSection] =
     </button>
   </div>
 
+  {selectedSection === "Home" && (
+  <>
+    <h2 className="text-2xl font-semibold text-white">
+      Home
+    </h2>
+
+    <p className="mt-2 text-white/45">
+      Learn what every control on the Home page does.
+    </p>
+
+    <div className="mt-8 space-y-4">
+
+      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+        <p className="max-w-[72%] text-white/80 leading-7">
+          Search your AI apps, templates and content instantly.
+        </p>
+
+        {/* Search icon */}
+      </div>
+
+      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+        <p className="max-w-[72%] text-white/80 leading-7">
+          Filter AI apps by category.
+        </p>
+
+        {/* Filter icon */}
+      </div>
+
+      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+        <p className="max-w-[72%] text-white/80 leading-7">
+          Shows how many users have liked an AI app.
+        </p>
+
+        {/* Heart icon */}
+      </div>
+
+      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+        <p className="max-w-[72%] text-white/80 leading-7">
+          Displays how many times an AI app has been viewed.
+        </p>
+
+        {/* Views icon */}
+      </div>
+
+      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+        <p className="max-w-[72%] text-white/80 leading-7">
+          Opens your public profile.
+        </p>
+
+        {/* Profile icon */}
+      </div>
+
+      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+        <p className="max-w-[72%] text-white/80 leading-7">
+          Opens the quick settings menu.
+        </p>
+
+        {/* Settings icon */}
+      </div>
+
+    </div>
+  </>
+)}
+
 </div>
   </div>
 
