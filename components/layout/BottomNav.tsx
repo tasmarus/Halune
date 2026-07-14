@@ -114,10 +114,10 @@ export default function BottomNav() {
                 strokeWidth="1.8"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-7 h-7 -translate-y-[1px]"
+                className="w-7 h-7 -translate-y-[1.4px]"
               >
-                <path d="M6.8 11 L12 6.8 L17.2 11" />
-                <path d="M7.2 11 V18 Q7.2 19.6 8.8 19.6 H15.2 Q16.8 19.6 16.8 18 V11" />
+                <path d="M6.6 11 L12 6.2 L17.4 11" />
+                <path d="M6.6 11 V18 Q6.6 19.6 8.4 19.6 H15.6 Q17.4 19.6 17.4 18 V11" />
               </svg>
             </Link>
           </div>
@@ -188,15 +188,20 @@ export default function BottomNav() {
                   stroke="none"
                 />
 
-                <line x1="12" y1="5" x2="12" y2="7.2" />
+                <path
+  d="M12 3.6V6.95"
+  stroke={activeIndex === 1 ? "#fff" : "#9ca3af"}
+  strokeWidth="1.8"
+  strokeLinecap="round"
+/>
 
-                <circle
-                  cx="12"
-                  cy="4"
-                  r="1"
-                  fill={activeIndex === 1 ? "#fff" : "#9ca3af"}
-                  stroke="none"
-                />
+<circle
+  cx="12"
+  cy="3.6"
+  r="0.9"
+  fill={activeIndex === 1 ? "#fff" : "#9ca3af"}
+  stroke="none"
+/>
               </svg>
             </Link>
           </div>
