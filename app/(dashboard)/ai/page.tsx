@@ -33,6 +33,8 @@ import Templates from "./components/Templates";
 
 import SettingsPage from "./components/Settings";
 
+import Notifications from "./components/Notifications";
+
 const data = [
   { value: 0 },
   { value: 400 },
@@ -55,6 +57,7 @@ function useCountUp(
 
   useEffect(() => {
     if (!start || started.current) return;
+
 
     started.current = true;
 
@@ -87,6 +90,10 @@ function useCountUp(
 export default function AIPage() {
   
   const router = useRouter();
+
+  useEffect(() => {
+  router.prefetch("/builder");
+}, [router]);
 
   const [showPreviewText, setShowPreviewText] = useState(false);
   
@@ -125,7 +132,6 @@ export default function AIPage() {
   const [showDot, setShowDot] =
     useState(false);
 
-  const initialized = useRef(false);
 
 const [gridVisible, setGridVisible] = useState(false);
 
@@ -178,30 +184,32 @@ useEffect(() => {
 }, [router, builderOpen]);
 
   useEffect(() => {
-    if (initialized.current) return;
+  if (activeSection !== "dashboard" || builderOpen) return;
 
-    initialized.current = true;
+  setGraphVisible(false);
+  setGridVisible(false);
+  setShowDot(false);
 
-    requestAnimationFrame(() => {
-      setMounted(true);
+  requestAnimationFrame(() => {
+    setMounted(true);
 
-      setGridVisible(true);
+    setGridVisible(true);
 
-      setTimeout(() => {
-        requestAnimationFrame(() => {
-          setGraphVisible(true);
-        });
-      }, 16);
-    });
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        setGraphVisible(true);
+      });
+    }, 16);
+  });
 
-    const dotTimer = setTimeout(() => {
-      setShowDot(true);
-    }, 1410);
+  const dotTimer = setTimeout(() => {
+    setShowDot(true);
+  }, 1410);
 
-    return () => {
-      clearTimeout(dotTimer);
-    };
-  }, []);
+  return () => {
+    clearTimeout(dotTimer);
+  };
+}, [activeSection, builderOpen]);
 
   const stats = [
     {
@@ -257,32 +265,18 @@ useEffect(() => {
 
 {activeSection === "notifications" && (
   <motion.div
-  initial={{
-    opacity: 0,
-    y: 12,
-  }}
-  animate={{
-    opacity: 1,
-    y: 0,
-  }}
-  transition={{
-    duration: 0.5,
-    ease: [0.22, 1, 0.36, 1],
-  }}
-  style={{
-    willChange: "transform, opacity",
-  }}
-  className="h-full flex items-center justify-center"
->
-    <div className="text-center">
-      <h1 className="text-3xl font-medium text-white">
-        Notifications
-      </h1>
-
-      <p className="mt-2 text-white/40">
-        Notifications page coming soon.
-      </p>
-    </div>
+    initial={{ opacity: 0, y: 12 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    style={{
+      willChange: "transform, opacity",
+    }}
+    className="h-full flex items-center justify-center"
+  >
+    <Notifications />
   </motion.div>
 )}
       {/* CHAT */}
@@ -608,7 +602,7 @@ useEffect(() => {
   disabled={!canLaunchApp}
   className={`
     w-16
-    h-10
+    h-8
     rounded-full
     flex
     items-center
@@ -651,27 +645,34 @@ useEffect(() => {
 {(showApps || isClosingApps) && (
   <div
     style={{
-  animation: isClosingApps
-    ? "appsMenuOut 0.32s cubic-bezier(0.22,1,0.36,1) forwards"
-    : "appsMenuIn 0.32s cubic-bezier(0.22,1,0.36,1) forwards",
-}}
-
+      animation: isClosingApps
+        ? "appsMenuOut 0.32s cubic-bezier(0.22,1,0.36,1) forwards"
+        : "appsMenuIn 0.32s cubic-bezier(0.22,1,0.36,1) forwards",
+    }}
+    className="
+      absolute
+      top-16
+      left-[-228px]
+      w-50
+      rounded-[32px]
+      border
+      bg-white/5
+      border-white/10
+      overflow-visible
+      p-6
+    "
+  >
+    <div
   className="
-    absolute
-    top-16
-    left-[-228px]
- w-50
- rounded-[32px]
-    border
-    bg-white/5
-    border-white/10
-    overflow-visible
-    p-6
-
+    flex
+    flex-col
+    max-h-[260px]
+    overflow-y-auto
+    custom-scrollbar
+    pr-1
   "
 >
-    <div className="flex flex-col gap-3 mb-4">
-      <h3 className="text-white/40 text-lg font-medium">
+      <h3 className="mb-5 text-white/40 text-lg font-medium">
   My Apps
 </h3>
 
@@ -688,11 +689,33 @@ useEffect(() => {
       >
         Create App
       </button>
-    </div>
 
-    <div className="text-white/40 text-sm">
-  No apps created yet.
-</div>
+      <button
+        className="
+          mt-3
+          h-10
+          w-full
+          rounded-full
+          border
+          border-white/10
+          bg-[#1B1B1B]
+          text-white/60
+          text-sm
+          font-medium
+          transition-all
+          duration-200
+          hover:bg-[#222222]
+          hover:text-white/80
+          hover:border-white/20
+        "
+      >
+        Upload App
+      </button>
+
+      <p className="pt-4 text-white/40 text-sm">
+        No apps created yet.
+      </p>
+    </div>
   </div>
 )}
 
@@ -1106,7 +1129,7 @@ onClick={() => {
   disabled={chatInput.trim().length === 0}
   className={`
     w-14
-    h-10
+    h-8
     rounded-full
     flex
     items-center

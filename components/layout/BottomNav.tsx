@@ -98,14 +98,19 @@ export default function BottomNav() {
                 router.push("/");
               }}
               className="
-                relative
-                z-10
-                w-full
-                h-full
-                flex
-                items-center
-                justify-center
-              "
+  relative
+  z-10
+  w-full
+  h-full
+  flex
+  items-center
+  justify-center
+  outline-none
+  focus:outline-none
+  focus:ring-0
+  focus-visible:outline-none
+  focus-visible:ring-0
+"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -139,14 +144,19 @@ export default function BottomNav() {
     router.push("/ai");
   }}
   className="
-    relative
-    z-10
-    w-full
-    h-full
-    flex
-    items-center
-    justify-center
-  "
+  relative
+  z-10
+  w-full
+  h-full
+  flex
+  items-center
+  justify-center
+  outline-none
+  focus:outline-none
+  focus:ring-0
+  focus-visible:outline-none
+  focus-visible:ring-0
+"
 >
               <svg
                 viewBox="0 0 24 24"
