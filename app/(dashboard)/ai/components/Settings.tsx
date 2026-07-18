@@ -9,6 +9,7 @@ import TapIcon from "@/components/icons/TapIcon";
 export default function Settings() {
 
 const [showButtonsHelp, setShowButtonsHelp] = useState(false);
+const [pageTransition, setPageTransition] = useState(false);
 const [selectedSection, setSelectedSection] =
   useState("Navigation");
 
@@ -80,7 +81,11 @@ const [selectedSection, setSelectedSection] =
             <button
   onClick={() => {
   setSelectedSection("Navigation");
+setPageTransition(true);
+
+setTimeout(() => {
   setShowButtonsHelp(true);
+}, 450);
 }}
               className="
                 h-9
@@ -128,7 +133,11 @@ const [selectedSection, setSelectedSection] =
             <button
   onClick={() => {
     setSelectedSection("Privacy Policy");
-    setShowButtonsHelp(true);
+setPageTransition(true);
+
+setTimeout(() => {
+  setShowButtonsHelp(true);
+}, 450);
   }}
   className="
     h-9
@@ -176,7 +185,11 @@ const [selectedSection, setSelectedSection] =
             <button
   onClick={() => {
     setSelectedSection("Legal");
-    setShowButtonsHelp(true);
+setPageTransition(true);
+
+setTimeout(() => {
+  setShowButtonsHelp(true);
+}, 450);
   }}
   className="
     h-9
