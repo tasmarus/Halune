@@ -9,9 +9,9 @@ import TapIcon from "@/components/icons/TapIcon";
 export default function Settings() {
 
 const [showButtonsHelp, setShowButtonsHelp] = useState(false);
-const [pageTransition, setPageTransition] = useState(false);
 const [selectedSection, setSelectedSection] =
   useState("Navigation");
+const [cardVisible, setCardVisible] = useState(true);
 
   return (
     <motion.div
@@ -33,7 +33,14 @@ const [selectedSection, setSelectedSection] =
       }}
       className="min-h-[calc(100vh-80px)] flex items-center justify-center py-1"
     >
-      <div
+      <motion.div
+  animate={{
+    opacity: cardVisible ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
         className="
           w-full
           max-w-3xl
@@ -80,12 +87,12 @@ const [selectedSection, setSelectedSection] =
 
             <button
   onClick={() => {
-  setSelectedSection("Navigation");
-setPageTransition(true);
+  setCardVisible(false);
 
-setTimeout(() => {
-  setShowButtonsHelp(true);
-}, 450);
+  setTimeout(() => {
+    setSelectedSection("Navigation");
+    setShowButtonsHelp(true);
+  }, 450);
 }}
               className="
                 h-9
@@ -132,13 +139,13 @@ setTimeout(() => {
 
             <button
   onClick={() => {
-    setSelectedSection("Privacy Policy");
-setPageTransition(true);
+  setCardVisible(false);
 
-setTimeout(() => {
-  setShowButtonsHelp(true);
-}, 450);
-  }}
+  setTimeout(() => {
+    setSelectedSection("Privacy Policy");
+    setShowButtonsHelp(true);
+  }, 450);
+}}
   className="
     h-9
     px-5
@@ -184,13 +191,13 @@ setTimeout(() => {
 
             <button
   onClick={() => {
-    setSelectedSection("Legal");
-setPageTransition(true);
+  setCardVisible(false);
 
-setTimeout(() => {
-  setShowButtonsHelp(true);
-}, 450);
-  }}
+  setTimeout(() => {
+    setSelectedSection("Legal");
+    setShowButtonsHelp(true);
+  }, 450);
+}}
   className="
     h-9
     px-5
@@ -211,17 +218,27 @@ setTimeout(() => {
           </div>
 
         </div>
-      </div>
+      </motion.div>
       <AnimatePresence>
   {showButtonsHelp && (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-    >
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  exit={{ opacity: 0 }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="fixed inset-0 ..."
+>
       <button
-        onClick={() => setShowButtonsHelp(false)}
+       onClick={() => {
+  setShowButtonsHelp(false);
+
+  setTimeout(() => {
+    setCardVisible(true);
+  }, 450);
+}}
         style={{
   transform: "translateY(-19px)",
 }}
@@ -266,13 +283,19 @@ setTimeout(() => {
       </button>
 
       <motion.div
-        initial={{ scale: 0.97, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.97, opacity: 0 }}
-        transition={{
-          duration: 0.25,
-          ease: [0.22, 1, 0.36, 1],
-        }}
+  initial={false}
+  animate={{
+    opacity: 1,
+    scale: 1,
+  }}
+  exit={{
+    opacity: 0,
+    scale: 0.985,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
         className="
           w-[1000px]
           h-[600px]
@@ -299,7 +322,7 @@ setTimeout(() => {
     : "Learn what every button and action inside Halune does."}
 </p>
 
-<div className="mt-8 flex gap-6 h-[440px]">
+<div className="mt-5 flex gap-6 h-[440px]">
 
   {selectedSection !== "Privacy Policy" &&
  selectedSection !== "Legal" && (
@@ -390,6 +413,7 @@ selectedSection === "Legal"
     p-8
     overflow-y-auto
     custom-scrollbar
+    pr-4
   `}
 >
     
