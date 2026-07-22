@@ -11,7 +11,9 @@ export default function Settings() {
 const [showButtonsHelp, setShowButtonsHelp] = useState(false);
 const [selectedSection, setSelectedSection] =
   useState("Navigation");
+
 const [cardVisible, setCardVisible] = useState(true);
+const [page, setPage] = useState<"account" | "billing">("account");
 
   return (
     <motion.div
@@ -138,7 +140,7 @@ const [cardVisible, setCardVisible] = useState(true);
             </div>
 
             <button
-  onClick={() => {
+ onClick={() => {
   setCardVisible(false);
 
   setTimeout(() => {
@@ -229,6 +231,9 @@ const [cardVisible, setCardVisible] = useState(true);
     duration: 0.45,
     ease: [0.22, 1, 0.36, 1],
   }}
+  style={{
+  left: "160px",
+}}
   className="fixed inset-0 ..."
 >
       <button

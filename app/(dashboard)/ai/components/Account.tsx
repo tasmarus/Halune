@@ -5,9 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 export default function Account() {
 
-const [showCancelModal, setShowCancelModal] = useState(false);
+const [cardVisible, setCardVisible] = useState(true);
 
-const [showPlanModal, setShowPlanModal] = useState(false);
+const [currentPlan, setCurrentPlan] = useState<"Free" | "Pro" | "Premium">("Free");
+
+const [showBilling, setShowBilling] = useState(false);
+const [billingPlan, setBillingPlan] = useState<"Free" | "Pro" | "Premium" | null>(null);
+
+const [page, setPage] = useState<"account" | "billing">("account");
+
 
   return (
     <motion.div
@@ -29,17 +35,26 @@ const [showPlanModal, setShowPlanModal] = useState(false);
       }}
       className="min-h-[calc(100vh-80px)] flex items-center justify-center py-1"
     >
-      <div
-        className="
-          w-full
-          max-w-3xl
-          rounded-3xl
-          border
-          border-white/10
-          bg-white/[0.04]
-          p-8
-        "
-      >
+
+
+      <motion.div
+  animate={{
+    opacity: cardVisible ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="
+    w-full
+    max-w-3xl
+    rounded-3xl
+    border
+    border-white/10
+    bg-white/[0.04]
+    p-8
+  "
+>
         <h1 className="text-[1.85rem] font-medium text-white -mt-5">
           Account
         </h1>
@@ -153,7 +168,13 @@ const [showPlanModal, setShowPlanModal] = useState(false);
         "
       >
         <button
-  onClick={() => setShowPlanModal(true)}
+  onClick={() => {
+  setCardVisible(false);
+
+  setTimeout(() => {
+    setShowBilling(true);
+  }, 450);
+}}
   className="
             h-9
             px-5
@@ -170,7 +191,13 @@ const [showPlanModal, setShowPlanModal] = useState(false);
         </button>
 
         <button
-  onClick={() => setShowCancelModal(true)}
+  onClick={() => {
+  setCardVisible(false);
+
+  setTimeout(() => {
+    setShowBilling(true);
+  }, 450);
+}}
           className="
             h-9
             px-5
@@ -222,7 +249,7 @@ const [showPlanModal, setShowPlanModal] = useState(false);
   </button>
 </div>
 
-      </div>
+      </motion.div>
 
 <AnimatePresence>
   {showCancelModal && (
@@ -236,7 +263,13 @@ const [showPlanModal, setShowPlanModal] = useState(false);
 <div className="relative">
 
       <button
-  onClick={() => setShowCancelModal(false)}
+ onClick={() => {
+  setShowCancelModal(false);
+
+  setTimeout(() => {
+    setCardVisible(true);
+  }, 450);
+}}
   className="
     absolute
     -top-14
@@ -340,7 +373,13 @@ const [showPlanModal, setShowPlanModal] = useState(false);
 
         {/* Close button */}
         <button
-          onClick={() => setShowPlanModal(false)}
+          onClick={() => {
+  setShowPlanModal(false);
+
+  setTimeout(() => {
+    setCardVisible(true);
+  }, 450);
+}}
           className="
             absolute
             -top-14
@@ -424,22 +463,36 @@ const [showPlanModal, setShowPlanModal] = useState(false);
   </div>
 
   <button
+  onClick={() => {
+  if (currentPlan !== "Free") {
+    setCardVisible(false);
+
+setTimeout(() => {
+  setBillingPlan("Free");
+  setShowBilling(true);
+}, 450);
+  }
+}}
   style={{
   transform: "translateY(-36px)",
 }}
-    className="
-      mt-10
-      h-11
-      rounded-full
-      border
-      border-white/10
-      bg-white/5
-      text-white/40
-      font-medium
-      cursor-default
-    "
+    className={`
+  mt-10
+  h-11
+  rounded-full
+  border
+  font-medium
+  ${
+    currentPlan === "Free"
+      ? "border-white/10 bg-white/5 text-white/40 cursor-default"
+      : "border-white/10 bg-white text-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+  }
+`}
   >
-    Current Plan
+{currentPlan === "Free" ? "Current Plan" : "Downgrade to Free"}
+
+disabled={currentPlan === "Free"}
+
   </button>
 
 <div
@@ -525,22 +578,44 @@ const [showPlanModal, setShowPlanModal] = useState(false);
   </div>
 
   <button
+  onClick={() => {
+  if (currentPlan !== "Pro") {
+    setCardVisible(false);
+
+setTimeout(() => {
+  setBillingPlan("Pro");
+  setShowBilling(true);
+}, 450);
+  }
+}}
   style={{
   transform: "translateY(-36px)",
 }}
-    className="
-      mt-10
-      h-11
-      rounded-full
-      border
-      border-white
-      bg-white
-      text-black
-      font-medium
-      cursor-default
-    "
+    className={`
+  mt-10
+  h-11
+  rounded-full
+  border
+  font-medium
+  transition-all
+  duration-200
+  ${
+    currentPlan === "Pro"
+      ? "border-white/10 bg-white/5 text-white/40 cursor-default"
+      : "border-white/10 bg-white text-black hover:scale-[1.02] active:scale-[0.98]"
+  }
+`}
   >
-    Upgrade to Pro
+    {
+  currentPlan === "Pro"
+    ? "Current Plan"
+    : currentPlan === "Free"
+      ? "Upgrade to Pro"
+      : "Downgrade to Pro"
+}
+
+disabled={currentPlan === "Pro"}
+
   </button>
 
   <div
@@ -604,22 +679,41 @@ const [showPlanModal, setShowPlanModal] = useState(false);
   </div>
 
   <button
+  onClick={() => {
+  if (currentPlan !== "Premium") {
+    setCardVisible(false);
+
+setTimeout(() => {
+  setBillingPlan("Premium");
+  setShowBilling(true);
+}, 450);
+  }
+}}
   style={{
   transform: "translateY(-36px)",
 }}
-    className="
-      mt-10
-      h-11
-      rounded-full
-      border
-      border-white
-      bg-white
-      text-black
-      font-medium
-      cursor-default
-    "
+    className={`
+  mt-10
+  h-11
+  rounded-full
+  border
+  font-medium
+  transition-all
+  duration-200
+  ${
+    currentPlan === "Premium"
+      ? "border-white/10 bg-white/5 text-white/40 cursor-default"
+      : "border-white/10 bg-white text-black hover:scale-[1.02] active:scale-[0.98]"
+  }
+`}
   >
-    Upgrade to Premium
+    {
+  currentPlan === "Premium"
+    ? "Current Plan"
+    : "Upgrade to Premium"
+}
+disabled={currentPlan === "Premium"}
+
   </button>
 
   <div
