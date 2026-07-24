@@ -13,7 +13,7 @@ const [showBilling, setShowBilling] = useState(false);
 const [billingPlan, setBillingPlan] = useState<"Free" | "Pro" | "Premium" | null>(null);
 
 const [page, setPage] = useState<
-  "account" | "plans" | "billing"
+  "account" | "plans" | "billing" | "cancel"
 >("account");
 
 
@@ -196,11 +196,12 @@ const [page, setPage] = useState<
         </button>
 
         <button
-  onClick={() => {
+ onClick={() => {
   setCardVisible(false);
 
   setTimeout(() => {
-    setShowBilling(true);
+    setPage("cancel");
+    setCardVisible(true);
   }, 450);
 }}
           className="
@@ -942,6 +943,196 @@ const [page, setPage] = useState<
 </button>
 
 </div>
+    </div>
+  </motion.div>
+)}
+
+{page === "cancel" && (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{
+      opacity: cardVisible ? 1 : 0,
+    }}
+    transition={{
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    className="
+      w-full
+      flex
+      justify-center
+      items-start
+      pt-4
+      pb-36
+    "
+  >
+    <div
+      className="
+        relative
+        w-[980px]
+        rounded-[28px]
+        border
+        border-white/10
+        bg-[#0E0E0E]
+        px-10
+        pt-5
+        pb-5
+      "
+    >
+
+     <h1 className="text-4xl font-medium text-white text-center">
+  Cancel Subscription
+</h1>
+
+<p className="mt-3 text-center text-white/40 max-w-[620px] mx-auto leading-7">
+  We're sorry to see you go. Your subscription will remain active until
+  the end of your current billing period.
+</p>
+
+<div className="mt-12">
+
+  <p className="text-white text-lg font-medium">
+    Why are you cancelling?
+  </p>
+
+  <div className="mt-7 space-y-5">
+
+    {[
+      "Too expensive",
+      "Missing features",
+      "Not using Halune enough",
+      "Switching to another platform",
+      "Found a better alternative",
+      "Other",
+    ].map((reason) => (
+      <label
+        key={reason}
+        className="
+          flex
+          items-center
+          gap-4
+          cursor-pointer
+        "
+      >
+        <input
+          type="radio"
+          name="cancelReason"
+          className="
+            h-5
+            w-5
+            accent-red-500
+          "
+        />
+
+        <span className="text-white/75">
+          {reason}
+        </span>
+      </label>
+    ))}
+
+  </div>
+
+  <div className="mt-10">
+
+    <label className="block mb-2 text-white/60 text-sm">
+      Additional feedback (optional)
+    </label>
+
+    <textarea
+      rows={5}
+      placeholder="Tell us how we could improve Halune..."
+      className="
+        w-full
+        rounded-3xl
+        border
+        border-white/10
+        bg-white/[0.04]
+        p-5
+        text-white
+        placeholder:text-white/40
+        outline-none
+        resize-none
+        focus:border-white/20
+      "
+    />
+
+  </div>
+
+</div>
+
+<div className="mt-10 flex justify-center">
+
+  <button
+    className="
+      h-9
+      px-5
+      rounded-full
+      border
+      border-red-500/70
+      bg-[#111111]
+      text-red-500
+      text-sm
+      font-medium
+      transition-all
+      duration-200
+      hover:border-red-500
+      hover:bg-red-500/10
+    "
+  >
+    Cancel Subscription
+  </button>
+
+  <button
+  onClick={() => {
+    setCardVisible(false);
+
+    setTimeout(() => {
+      setPage("account");
+      setCardVisible(true);
+    }, 450);
+  }}
+  className="
+    absolute
+    top-1
+    right-1
+    w-11
+    h-11
+    rounded-full
+    border
+    border-white/10
+    bg-[#111111]
+    text-white/70
+    hover:text-white
+    hover:border-white/20
+    transition-all
+    flex
+    items-center
+    justify-center
+  "
+>
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      d="M7 7L17 17"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="square"
+    />
+    <path
+      d="M17 7L7 17"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="square"
+    />
+  </svg>
+</button>
+
+</div>
+
     </div>
   </motion.div>
 )}
