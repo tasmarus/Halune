@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
+import PageWrapper from "@/app/(dashboard)/ai/components/layout/PageWrapper";
 export default function Account() {
 
 const [cardVisible, setCardVisible] = useState(true);
@@ -20,54 +21,60 @@ const [page, setPage] = useState<
   return (
     <>
     {page === "account" && (
+  <motion.div
+    initial={{
+      opacity: 0,
+      y: 12,
+    }}
+    animate={{
+      opacity: 1,
+      y: 0,
+    }}
+    transition={{
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    style={{
+      willChange: "transform, opacity",
+    }}
+    className="
+      w-full
+      flex
+      justify-center
+      items-start
+      pt-4
+      pb-36
+    "
+  >
     <motion.div
-      initial={{
-        opacity: 0,
-        y: 12,
-      }}
       animate={{
-        opacity: 1,
-        y: 0,
+        opacity: cardVisible ? 1 : 0,
       }}
       transition={{
-        duration: 0.5,
+        duration: 0.45,
         ease: [0.22, 1, 0.36, 1],
       }}
-      style={{
-        willChange: "transform, opacity",
-        transform: "translate(-22px, -22px)",
-      }}
-      className="min-h-[calc(100vh-80px)] flex items-center justify-center py-1"
+      className="
+        relative
+        w-[980px]
+        rounded-[28px]
+        border
+        border-white/10
+        bg-[#0E0E0E]
+        px-10
+        pt-5
+        pb-1
+      "
     >
+        <h1 className="text-4xl font-medium text-white text-center">
+  Account
+</h1>
 
+<p className="text-center text-white/40 mt-3">
+  Manage your account and billing.
+</p>
 
-      <motion.div
-  animate={{
-    opacity: cardVisible ? 1 : 0,
-  }}
-  transition={{
-    duration: 0.45,
-    ease: [0.22, 1, 0.36, 1],
-  }}
-  className="
-    w-full
-    max-w-3xl
-    rounded-3xl
-    border
-    border-white/10
-    bg-white/[0.04]
-    p-8
-  "
->
-        <h1 className="text-[1.85rem] font-medium text-white -mt-5">
-          Account
-        </h1>
-
-        <p className="mt-1 text-white/40">
-          Manage your account and billing.
-        </p>
-
-      <div className="mt-6 space-y-6">
+<div className="mt-5 space-y-6">
 
   {/* Email */}
   <div>
@@ -261,23 +268,45 @@ const [page, setPage] = useState<
     )}
 
       {page === "plans" && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: cardVisible ? 1 : 0 }}
-          transition={{
-            duration: 0.45,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-            w-full
-            max-w-[950px]
-            rounded-3xl
-            border
-            border-white/10
-            bg-[#0E0E0E]
-            p-10
-          "
-        >
+  <motion.div
+    initial={{
+      opacity: 0,
+      y: 12,
+    }}
+    animate={{
+      opacity: 1,
+      y: 0,
+    }}
+    transition={{
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    style={{
+      willChange: "transform, opacity",
+      transform: "translate(-22px, -22px)",
+    }}
+    className="min-h-[calc(100vh-80px)] flex items-center justify-center py-1"
+  >
+
+<motion.div
+  animate={{
+    opacity: cardVisible ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="
+    w-full
+    max-w-[950px]
+    rounded-3xl
+    border
+    border-white/10
+    bg-[#0E0E0E]
+    p-10
+  "
+></motion.div>
+
           <h1 className="text-4xl font-medium text-white text-center">
             Choose your plan
           </h1>
@@ -627,6 +656,49 @@ const [page, setPage] = useState<
       <span>Launch 30 AI apps</span>
     </div>
   </div>
+
+<button
+  onClick={() => {
+    setCardVisible(false);
+
+    setTimeout(() => {
+      setPage("account");
+      setCardVisible(true);
+    }, 450);
+  }}
+  className="
+    fixed
+    top-4
+    right-[76px]
+    w-11
+    h-9
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="rgb(255,255,255)"
+    opacity="0.4"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+  >
+    <line x1="6" y1="6" x2="18" y2="18" />
+    <line x1="18" y1="6" x2="6" y2="18" />
+  </svg>
+</button>
+
 </div>
 
 
@@ -1025,43 +1097,35 @@ const [page, setPage] = useState<
     }, 450);
   }}
   className="
-    absolute
-    top-4
-    right-4
-    w-8
-    h-8
-    rounded-full
-    border
-    border-white/10
-    bg-[#111111]
-    text-white/45
-    hover:text-white/75
-    hover:border-white/20
-    transition-all
-    duration-200
-    flex
-    items-center
-    justify-center
-  "
+  fixed
+  top-4
+  right-[76px]
+  w-11
+  h-9
+  rounded-full
+  border
+  border-white/10
+  bg-white/5
+  flex
+  items-center
+  justify-center
+  hover:bg-white/[0.08]
+  transition-all
+  duration-200
+"
 >
   <svg
-    width="14"
-    height="14"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
+    stroke="rgb(255,255,255)"
+    opacity="0.4"
+    strokeWidth="2.5"
+    strokeLinecap="round"
   >
-    <path
-      d="M7 7L17 17"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-    />
-    <path
-      d="M17 7L7 17"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-    />
+    <line x1="6" y1="6" x2="18" y2="18" />
+    <line x1="18" y1="6" x2="6" y2="18" />
   </svg>
 </button>
 
