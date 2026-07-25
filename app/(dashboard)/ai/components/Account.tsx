@@ -991,73 +991,6 @@ const [page, setPage] = useState<
 
 <div className="mt-12">
 
-  <p className="text-white text-lg font-medium">
-    Why are you cancelling?
-  </p>
-
-  <div className="mt-7 space-y-5">
-
-    {[
-      "Too expensive",
-      "Missing features",
-      "Not using Halune enough",
-      "Switching to another platform",
-      "Found a better alternative",
-      "Other",
-    ].map((reason) => (
-      <label
-        key={reason}
-        className="
-          flex
-          items-center
-          gap-4
-          cursor-pointer
-        "
-      >
-        <input
-          type="radio"
-          name="cancelReason"
-          className="
-            h-5
-            w-5
-            accent-red-500
-          "
-        />
-
-        <span className="text-white/75">
-          {reason}
-        </span>
-      </label>
-    ))}
-
-  </div>
-
-  <div className="mt-10">
-
-    <label className="block mb-2 text-white/60 text-sm">
-      Additional feedback (optional)
-    </label>
-
-    <textarea
-      rows={5}
-      placeholder="Tell us how we could improve Halune..."
-      className="
-        w-full
-        rounded-3xl
-        border
-        border-white/10
-        bg-white/[0.04]
-        p-5
-        text-white
-        placeholder:text-white/40
-        outline-none
-        resize-none
-        focus:border-white/20
-      "
-    />
-
-  </div>
-
 </div>
 
 <div className="mt-10 flex justify-center">
@@ -1093,40 +1026,41 @@ const [page, setPage] = useState<
   }}
   className="
     absolute
-    top-1
-    right-1
-    w-11
-    h-11
+    top-4
+    right-4
+    w-8
+    h-8
     rounded-full
     border
     border-white/10
     bg-[#111111]
-    text-white/70
-    hover:text-white
+    text-white/45
+    hover:text-white/75
     hover:border-white/20
     transition-all
+    duration-200
     flex
     items-center
     justify-center
   "
 >
   <svg
-    width="20"
-    height="20"
+    width="14"
+    height="14"
     viewBox="0 0 24 24"
     fill="none"
   >
     <path
       d="M7 7L17 17"
       stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="square"
+      strokeWidth="1.6"
+      strokeLinecap="round"
     />
     <path
       d="M17 7L7 17"
       stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="square"
+      strokeWidth="1.6"
+      strokeLinecap="round"
     />
   </svg>
 </button>
