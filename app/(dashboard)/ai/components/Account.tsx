@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import PageWrapper from "@/app/(dashboard)/ai/components/layout/PageWrapper";
+import CustomScrollbar from "@/components/ui/CustomScrollbar";
 export default function Account() {
 
 const [cardVisible, setCardVisible] = useState(true);
@@ -74,7 +75,7 @@ const [page, setPage] = useState<
   Manage your account and billing.
 </p>
 
-<div className="mt-5 space-y-6">
+<div className="mt-5">
 
   {/* Email */}
   <div>
@@ -86,10 +87,10 @@ const [page, setPage] = useState<
         w-full
         h-12
         rounded-2xl
-        bg-white/5
+        bg-white/[0.04]
         border
         border-white/10
-        px-4
+        px-5
         text-white
         placeholder:text-white/40
         outline-none
@@ -99,7 +100,7 @@ const [page, setPage] = useState<
   </div>
 
   {/* Password */}
-  <div>
+<div className="mt-7">
     <p className="text-sm text-white/50 mb-2">Password</p>
 
     <input
@@ -109,10 +110,10 @@ const [page, setPage] = useState<
         w-full
         h-12
         rounded-2xl
-        bg-white/5
+        bg-white/[0.04]
         border
         border-white/10
-        px-4
+        px-5
         text-white
         placeholder:text-white/40
         outline-none
@@ -122,7 +123,7 @@ const [page, setPage] = useState<
   </div>
 
   {/* Card Number */}
-  <div>
+<div className="mt-7">
     <p className="text-sm text-white/50 mb-2">Card Number</p>
 
     <input
@@ -131,10 +132,10 @@ const [page, setPage] = useState<
         w-full
         h-12
         rounded-2xl
-        bg-white/5
+        bg-white/[0.04]
         border
         border-white/10
-        px-4
+        px-5 
         text-white
         placeholder:text-white/40
         outline-none
@@ -144,7 +145,7 @@ const [page, setPage] = useState<
   </div>
 
   {/* Subscription */}
-  <div>
+  <div className="mt-7">
     <p className="text-sm text-white/50 mb-2">
       Subscription
     </p>
@@ -157,7 +158,7 @@ const [page, setPage] = useState<
           rounded-2xl
           border
           border-white/10
-          bg-white/5
+          bg-white/[0.04]
           px-4
           flex
           items-center
@@ -241,7 +242,7 @@ const [page, setPage] = useState<
 >
   <button
     style={{
-      transform: "translate(-10px, 4px)",
+      transform: "translate(-10px, -8px)",
     }}
     className="
       h-12
@@ -669,7 +670,7 @@ const [page, setPage] = useState<
   className="
     fixed
     top-4
-    right-[76px]
+    right-[82px]
     w-11
     h-9
     rounded-full
@@ -754,17 +755,13 @@ const [page, setPage] = useState<
   </span>
 </div>
 
-<div
+<CustomScrollbar
   className="
     mt-10
     h-[420px]
-    overflow-y-auto
-    custom-scrollbar
-    pr-4
-    flex
-    flex-col
   "
 >
+  <div className="pr-4 flex flex-col">
 
   <div>
   <label className="block mb-2 text-white/60 text-sm">
@@ -878,12 +875,14 @@ const [page, setPage] = useState<
   <div
   className="
     mt-10
+     -translate-y-2
     rounded-3xl
     border
     border-white/10
     bg-white/[0.03]
     px-6
-    py-5
+    pt-5
+pb-3
   "
 >
   <h2 className="text-white text-lg font-medium">
@@ -948,17 +947,13 @@ const [page, setPage] = useState<
 
   <button
     className="
-      h-11
-      px-4
-      rounded-full
-      bg-white
-      text-black
-      font-medium
-      transition-all
-      duration-200
-      hover:scale-[1.02]
-      active:scale-[0.98]
-    "
+  h-11
+  px-4
+  rounded-full
+  bg-white
+  text-black
+  font-medium
+"
   >
     Complete Purchase
   </button>
@@ -975,46 +970,39 @@ const [page, setPage] = useState<
     }, 450);
   }}
   className="
-    absolute
-    top-1
-    right-1
-    w-11
-    h-11
-    rounded-full
-    border
-    border-white/10
-    bg-[#111111]
-    text-white/70
-    hover:text-white
-    hover:border-white/20
-    transition-all
-    flex
-    items-center
-    justify-center
-  "
+  fixed
+  top-4
+  right-[82px]
+  w-11
+  h-9
+  rounded-full
+  border
+  border-white/10
+  bg-white/5
+  flex
+  items-center
+  justify-center
+  hover:bg-white/[0.08]
+  transition-all
+  duration-200
+"
 >
   <svg
     width="20"
     height="20"
     viewBox="0 0 24 24"
     fill="none"
+    stroke="rgb(255,255,255)"
+    opacity="0.4"
+    strokeWidth="2.5"
+    strokeLinecap="round"
   >
-    <path
-      d="M7 7L17 17"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="square"
-    />
-    <path
-      d="M17 7L7 17"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="square"
-    />
+    <line x1="6" y1="6" x2="18" y2="18" />
+    <line x1="18" y1="6" x2="6" y2="18" />
   </svg>
 </button>
-
-</div>
+  </div>
+</CustomScrollbar>
     </div>
   </motion.div>
 )}
@@ -1099,7 +1087,7 @@ const [page, setPage] = useState<
   className="
   fixed
   top-4
-  right-[76px]
+  right-[82px]
   w-11
   h-9
   rounded-full
