@@ -24,20 +24,18 @@ const [page, setPage] = useState<
     {page === "account" && (
   <motion.div
     initial={{
-      opacity: 0,
-      y: 12,
-    }}
-    animate={{
-      opacity: 1,
-      y: 0,
-    }}
-    transition={{
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
-    }}
-    style={{
-      willChange: "transform, opacity",
-    }}
+  opacity: 0,
+  y: 12,
+}}
+animate={{
+  opacity: 1,
+  y: 0,
+}}
+transition={{
+  duration: 0.5,
+  ease: [0.22, 1, 0.36, 1],
+}}
+    
     className="
       w-full
       flex
@@ -268,6 +266,80 @@ const [page, setPage] = useState<
                 </motion.div>
     )}
 
+   <motion.div
+  animate={{
+    opacity: cardVisible && page !== "account" ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="
+    fixed
+    z-[100]
+    top-4
+    right-[82px]
+  "
+>
+  <button
+    onClick={() => {
+      let targetPage: typeof page | null = null;
+
+      switch (page) {
+        case "plans":
+          targetPage = "account";
+          break;
+
+        case "billing":
+          targetPage = "plans";
+          break;
+
+        case "cancel":
+          targetPage = "account";
+          break;
+
+        default:
+          return;
+      }
+
+      setCardVisible(false);
+
+      setTimeout(() => {
+        setPage(targetPage!);
+        setCardVisible(true);
+      }, 450);
+    }}
+    className="
+      w-11
+      h-9
+      rounded-full
+      border
+      border-white/10
+      bg-white/5
+      flex
+      items-center
+      justify-center
+      hover:bg-white/[0.08]
+      transition-all
+      duration-200
+    "
+  >
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="rgb(255,255,255)"
+      opacity="0.4"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    >
+      <line x1="6" y1="6" x2="18" y2="18" />
+      <line x1="18" y1="6" x2="6" y2="18" />
+    </svg>
+  </button>
+</motion.div>
+
       {page === "plans" && (
   <motion.div
     initial={{
@@ -284,29 +356,30 @@ const [page, setPage] = useState<
     }}
     style={{
       willChange: "transform, opacity",
-      transform: "translate(-22px, -22px)",
     }}
-    className="min-h-[calc(100vh-80px)] flex items-center justify-center py-1"
+    className="
+  w-full
+  flex
+  justify-center
+  items-start
+  pt-4
+  pb-36
+"
   >
 
-<motion.div
-  animate={{
-    opacity: cardVisible ? 1 : 0,
-  }}
-  transition={{
-    duration: 0.45,
-    ease: [0.22, 1, 0.36, 1],
-  }}
+<div
   className="
-    w-full
-    max-w-[950px]
-    rounded-3xl
+    relative
+    w-[980px]
+    rounded-[28px]
     border
     border-white/10
     bg-[#0E0E0E]
-    p-10
+    px-10
+    pt-5
+    pb-1
   "
-></motion.div>
+>
 
           <h1 className="text-4xl font-medium text-white text-center">
             Choose your plan
@@ -322,17 +395,19 @@ const [page, setPage] = useState<
 
 <div
   className="
-    rounded-3xl
-    border
-    border-white/10
-    bg-white/[0.04]
-    h-[350px]
-    px-7
-    pt-4
-    pb-7
-    flex
-    flex-col
-  "
+  relative
+  -top-5
+  rounded-3xl
+  border
+  border-white/10
+  bg-white/[0.04]
+  h-[350px]
+  px-7
+  pt-4
+  pb-7
+  flex
+  flex-col
+"
 >
   <h2 className="text-[1.7rem] font-semibold text-white -mt-2">
     Free
@@ -441,17 +516,19 @@ const [page, setPage] = useState<
 
  <div
   className="
-    rounded-3xl
-    border
-    border-white/10
-    bg-white/[0.04]
-    h-[350px]
-    px-7
-    pt-4
-    pb-7
-    flex
-    flex-col
-  "
+  relative
+  -top-5
+  rounded-3xl
+  border
+  border-white/10
+  bg-white/[0.04]
+  h-[350px]
+  px-7
+  pt-4
+  pb-7
+  flex
+  flex-col
+"
 >
   <h2 className="text-[1.7rem] font-semibold text-white -mt-2">
     Pro
@@ -553,17 +630,19 @@ const [page, setPage] = useState<
 
   <div
   className="
-    rounded-3xl
-    border
-    border-white/10
-    bg-white/[0.04]
-    h-[350px]
-    px-7
-    pt-4
-    pb-7
-    flex
-    flex-col
-  "
+  relative
+  -top-5
+  rounded-3xl
+  border
+  border-white/10
+  bg-white/[0.04]
+  h-[350px]
+  px-7
+  pt-4
+  pb-7
+  flex
+  flex-col
+"
 >
   <h2 className="text-[1.7rem] font-semibold text-white -mt-2">
     Premium
@@ -658,72 +737,42 @@ const [page, setPage] = useState<
     </div>
   </div>
 
-<button
-  onClick={() => {
-    setCardVisible(false);
+  </div>
 
-    setTimeout(() => {
-      setPage("account");
-      setCardVisible(true);
-    }, 450);
-  }}
-  className="
-    fixed
-    top-4
-    right-[82px]
-    w-11
-    h-9
-    rounded-full
-    border
-    border-white/10
-    bg-white/5
-    flex
-    items-center
-    justify-center
-    hover:bg-white/[0.08]
-    transition-all
-    duration-200
-  "
->
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="rgb(255,255,255)"
-    opacity="0.4"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-  >
-    <line x1="6" y1="6" x2="18" y2="18" />
-    <line x1="18" y1="6" x2="6" y2="18" />
-  </svg>
-</button>
+
 
 </div>
 
 
 
 </div>
-        </motion.div>
+</motion.div>
+        
       )}
 
       {page === "billing" && (
   <motion.div
-    initial={{ opacity: 0 }}
-    animate={{
-      opacity: cardVisible ? 1 : 0,
-    }}
-    transition={{ duration: 0.45 }}
-    className="
-      w-full
-      flex
-      justify-center
-      items-start
-      pt-4
-      pb-36
-    "
-  >
+  initial={{
+  opacity: 0,
+  y: 12,
+}}
+animate={{
+  opacity: 1,
+  y: 0,
+}}
+transition={{
+  duration: 0.5,
+  ease: [0.22, 1, 0.36, 1],
+}}
+  className="
+    w-full
+    flex
+    justify-center
+    items-start
+    pt-4
+    pb-36
+  "
+>
     <div
       className="
         relative
@@ -960,47 +1009,7 @@ pb-3
 
 </div>
 
-<button
-  onClick={() => {
-    setCardVisible(false);
 
-    setTimeout(() => {
-      setPage("plans");
-      setCardVisible(true);
-    }, 450);
-  }}
-  className="
-  fixed
-  top-4
-  right-[82px]
-  w-11
-  h-9
-  rounded-full
-  border
-  border-white/10
-  bg-white/5
-  flex
-  items-center
-  justify-center
-  hover:bg-white/[0.08]
-  transition-all
-  duration-200
-"
->
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="rgb(255,255,255)"
-    opacity="0.4"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-  >
-    <line x1="6" y1="6" x2="18" y2="18" />
-    <line x1="18" y1="6" x2="6" y2="18" />
-  </svg>
-</button>
   </div>
 </CustomScrollbar>
     </div>
@@ -1075,48 +1084,7 @@ pb-3
     Cancel Subscription
   </button>
 
-  <button
-  onClick={() => {
-    setCardVisible(false);
-
-    setTimeout(() => {
-      setPage("account");
-      setCardVisible(true);
-    }, 450);
-  }}
-  className="
-  fixed
-  top-4
-  right-[82px]
-  w-11
-  h-9
-  rounded-full
-  border
-  border-white/10
-  bg-white/5
-  flex
-  items-center
-  justify-center
-  hover:bg-white/[0.08]
-  transition-all
-  duration-200
-"
->
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="rgb(255,255,255)"
-    opacity="0.4"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-  >
-    <line x1="6" y1="6" x2="18" y2="18" />
-    <line x1="18" y1="6" x2="6" y2="18" />
-  </svg>
-</button>
-
+ 
 </div>
 
     </div>
