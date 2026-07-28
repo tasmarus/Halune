@@ -340,31 +340,39 @@ transition={{
       {page === "plans" && (
   <motion.div
     initial={{
-      opacity: 0,
-      y: 12,
-    }}
-    animate={{
-      opacity: 1,
-      y: 0,
-    }}
+  opacity: 0,
+  y: 0,
+}}
+animate={{
+  opacity: 1,
+  y: 0,
+}}
     transition={{
       duration: 0.5,
       ease: [0.22, 1, 0.36, 1],
     }}
-    style={{
-      willChange: "transform, opacity",
-    }}
     className="
-  w-full
-  flex
-  justify-center
-  items-start
-  pt-4
-  pb-36
-"
+      w-full
+      flex
+      justify-center
+      items-start
+      pt-4
+      pb-36
+    "
   >
-
-<motion.div
+    <motion.div
+  initial={{
+    y: 12,
+  }}
+  animate={{
+    opacity: cardVisible ? 1 : 0,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+     
   className="
     relative
     w-[980px]
@@ -755,19 +763,26 @@ transition={{
     pb-36
   "
 >
-    <div
-      className="
-        relative
-        w-[980px]
-        rounded-[28px]
-        border
-        border-white/10
-        bg-[#0E0E0E]
-        px-10
-        pt-5
-        pb-1
-      "
-    >
+    <motion.div
+  animate={{
+    opacity: cardVisible ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="
+    relative
+    w-[980px]
+    rounded-[28px]
+    border
+    border-white/10
+    bg-[#0E0E0E]
+    px-10
+    pt-5
+    pb-1
+  "
+>
       <h1 className="text-4xl font-medium text-white text-center">
   Billing
 </h1>
@@ -994,7 +1009,7 @@ pb-3
 
   </div>
 </CustomScrollbar>
-    </div>
+   </motion.div>
   </motion.div>
 )}
 
