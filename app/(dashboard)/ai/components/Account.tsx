@@ -18,6 +18,17 @@ const [page, setPage] = useState<
   "account" | "plans" | "billing" | "cancel"
 >("account");
 
+const navigateTo = (
+  nextPage: "account" | "plans" | "billing" | "cancel"
+) => {
+  setCardVisible(false);
+
+  setTimeout(() => {
+    setPage(nextPage);
+    setCardVisible(true);
+  }, 450);
+};
+
 
   return (
     <>
@@ -179,12 +190,7 @@ transition={{
       >
         <button
   onClick={() => {
-  setCardVisible(false);
-
-  setTimeout(() => {
-    setPage("plans");
-    setCardVisible(true);
-  }, 450);
+  navigateTo("plans");
 }}
   className="
             h-9
@@ -203,12 +209,7 @@ transition={{
 
         <button
  onClick={() => {
-  setCardVisible(false);
-
-  setTimeout(() => {
-    setPage("cancel");
-    setCardVisible(true);
-  }, 450);
+  navigateTo("cancel");
 }}
           className="
             h-9
@@ -302,13 +303,8 @@ transition={{
           return;
       }
 
-      setCardVisible(false);
-
-      setTimeout(() => {
-        setPage(targetPage!);
-        setCardVisible(true);
-      }, 450);
-    }}
+      navigateTo(targetPage!);
+      }}
     className="
       w-11
       h-9
@@ -368,7 +364,7 @@ transition={{
 "
   >
 
-<div
+<motion.div
   className="
     relative
     w-[980px]
@@ -427,13 +423,8 @@ transition={{
   <button
     onClick={() => {
       if (currentPlan !== "Free") {
-        setCardVisible(false);
-
-        setTimeout(() => {
-          setBillingPlan("Free");
-          setPage("billing");
-          setCardVisible(true);
-        }, 450);
+        setBillingPlan("Free");
+navigateTo("billing");
       }
     }}
     disabled={currentPlan === "Free"}
@@ -548,13 +539,8 @@ transition={{
   <button
     onClick={() => {
       if (currentPlan !== "Pro") {
-        setCardVisible(false);
-
-        setTimeout(() => {
-          setBillingPlan("Pro");
-          setPage("billing");
-          setCardVisible(true);
-        }, 450);
+        setBillingPlan("Pro");
+navigateTo("billing");
       }
     }}
     disabled={currentPlan === "Pro"}
@@ -662,13 +648,8 @@ transition={{
   <button
     onClick={() => {
       if (currentPlan !== "Premium") {
-        setCardVisible(false);
-
-        setTimeout(() => {
-          setBillingPlan("Premium");
-          setPage("billing");
-          setCardVisible(true);
-        }, 450);
+        setBillingPlan("Premium");
+navigateTo("billing");
       }
     }}
     disabled={currentPlan === "Premium"}
@@ -746,7 +727,7 @@ transition={{
 
 
 
-</div>
+</motion.div>
 </motion.div>
         
       )}
