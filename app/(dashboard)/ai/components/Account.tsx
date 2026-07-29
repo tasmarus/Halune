@@ -46,6 +46,9 @@ transition={{
   duration: 0.5,
   ease: [0.22, 1, 0.36, 1],
 }}
+style={{
+  willChange: "transform",
+}}
     
     className="
       w-full
