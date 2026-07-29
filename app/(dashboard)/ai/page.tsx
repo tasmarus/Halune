@@ -255,7 +255,7 @@ useEffect(() => {
 />
 
       {/* MAIN */}
-      <div className="flex-1 p-6 overflow-y-auto">
+      <div className="flex-1 h-screen p-6 overflow-hidden">
 
 {activeSection === "templates" && <Templates />}
 

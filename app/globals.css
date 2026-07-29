@@ -105,3 +105,18 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;             /* Chrome, Safari, Opera */
 }
+@keyframes pageFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pageFadeSlide {
+  animation: pageFadeSlide 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
