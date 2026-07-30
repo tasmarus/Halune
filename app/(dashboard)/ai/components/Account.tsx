@@ -33,7 +33,7 @@ const navigateTo = (
   return (
     <>
     {page === "account" && (
-  <motion.div
+<motion.div
     initial={{
   opacity: 0,
   y: 12,
@@ -270,90 +270,95 @@ style={{
                 </motion.div>
     )}
 
-   <motion.div
-  animate={{
-    opacity: cardVisible && page !== "account" ? 1 : 0,
-  }}
-  transition={{
-    duration: 0.45,
-    ease: [0.22, 1, 0.36, 1],
-  }}
-  className="
-    fixed
-    z-[100]
-    top-4
-    right-[82px]
-  "
->
-  <button
-    onClick={() => {
-      let targetPage: typeof page | null = null;
-
-      switch (page) {
-        case "plans":
-          targetPage = "account";
-          break;
-
-        case "billing":
-          targetPage = "plans";
-          break;
-
-        case "cancel":
-          targetPage = "account";
-          break;
-
-        default:
-          return;
-      }
-
-      navigateTo(targetPage!);
-      }}
+   {page !== "account" && (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{
+      opacity: cardVisible ? 1 : 0,
+    }}
+    transition={{
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    }}
     className="
-      w-11
-      h-9
-      rounded-full
-      border
-      border-white/10
-      bg-white/5
-      flex
-      items-center
-      justify-center
-      hover:bg-white/[0.08]
-      transition-all
-      duration-200
+      fixed
+      z-[100]
+      top-4
+      right-[82px]
     "
   >
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="rgb(255,255,255)"
-      opacity="0.4"
-      strokeWidth="2.5"
-      strokeLinecap="round"
+    <button
+      onClick={() => {
+        let targetPage: "account" | "plans" | "billing" | "cancel" | null = null;
+
+        switch (page) {
+          case "plans":
+            targetPage = "account";
+            break;
+
+          case "billing":
+            targetPage = "plans";
+            break;
+
+          case "cancel":
+            targetPage = "account";
+            break;
+
+          default:
+            return;
+        }
+
+        navigateTo(targetPage!);
+      }}
+      className="
+        w-11
+        h-9
+        rounded-full
+        border
+        border-white/10
+        bg-white/5
+        flex
+        items-center
+        justify-center
+        hover:bg-white/[0.08]
+        transition-all
+        duration-200
+      "
     >
-      <line x1="6" y1="6" x2="18" y2="18" />
-      <line x1="18" y1="6" x2="6" y2="18" />
-    </svg>
-  </button>
-  
-</motion.div>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="rgb(255,255,255)"
+        opacity="0.4"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      >
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
+    </button>
+  </motion.div>
+)}
 
       {page === "plans" && (
   <motion.div
     initial={{
   opacity: 0,
-  y: 0,
+  y: 12,
 }}
 animate={{
   opacity: 1,
   y: 0,
 }}
-    transition={{
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
-    }}
+transition={{
+  duration: 0.5,
+  ease: [0.22, 1, 0.36, 1],
+}}
+style={{
+  willChange: "transform",
+}}
     className="
       w-full
       flex
@@ -364,17 +369,13 @@ animate={{
     "
   >
     <motion.div
-  initial={{
-    y: 12,
-  }}
   animate={{
-    opacity: cardVisible ? 1 : 0,
-    y: 0,
-  }}
-  transition={{
-    duration: 0.45,
-    ease: [0.22, 1, 0.36, 1],
-  }}
+  opacity: cardVisible ? 1 : 0,
+}}
+transition={{
+  duration: 0.45,
+  ease: [0.22, 1, 0.36, 1],
+}}
      
   className="
     relative
@@ -757,6 +758,9 @@ transition={{
   duration: 0.5,
   ease: [0.22, 1, 0.36, 1],
 }}
+style={{
+  willChange: "transform",
+}}
   className="
     w-full
     flex
@@ -768,12 +772,12 @@ transition={{
 >
     <motion.div
   animate={{
-    opacity: cardVisible ? 1 : 0,
-  }}
-  transition={{
-    duration: 0.45,
-    ease: [0.22, 1, 0.36, 1],
-  }}
+  opacity: cardVisible ? 1 : 0,
+}}
+transition={{
+  duration: 0.45,
+  ease: [0.22, 1, 0.36, 1],
+}}
   className="
     relative
     w-[980px]
@@ -924,14 +928,14 @@ transition={{
   <div
   className="
     mt-10
-     -translate-y-2
+   -translate-y-2
     rounded-3xl
     border
     border-white/10
     bg-white/[0.03]
     px-6
     pt-5
-pb-3
+    pb-3
   "
 >
   <h2 className="text-white text-lg font-medium">

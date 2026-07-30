@@ -331,20 +331,23 @@ useEffect(() => {
 
         {activeSection === "dashboard" && builderOpen && (
   <motion.div
-    initial={{
-      opacity: 0,
-      y: 18,
-    }}
-    animate={{
-      opacity: 1,
-      y: 0,
-    }}
-    transition={{
-      duration: 0.55,
-      ease: [0.22, 1, 0.36, 1],
-    }}
-    className="flex flex-col items-center gap-6 pt-24"
-  >
+  initial={{
+    opacity: 0,
+    y: 18,
+  }}
+  animate={{
+    opacity: 1,
+    y: 0,
+  }}
+  transition={{
+    duration: 0.55,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  style={{
+    willChange: "transform",
+  }}
+  className="flex flex-col items-center gap-6 pt-24"
+>
 
     {/* PREVIEW */}
     <div
