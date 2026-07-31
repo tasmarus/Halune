@@ -21,7 +21,7 @@ const [page, setPage] = useState<
 const navigateTo = (
   nextPage: "account" | "plans" | "billing" | "cancel"
 ) => {
-  setCardVisible(false);
+  // setCardVisible(false);
 
   setTimeout(() => {
     setPage(nextPage);
@@ -370,13 +370,13 @@ style={{
   >
     <motion.div
   animate={{
-  opacity: cardVisible ? 1 : 0,
-}}
-transition={{
-  duration: 0.45,
-  ease: [0.22, 1, 0.36, 1],
-}}
-     
+    opacity: cardVisible ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+
   className="
     relative
     w-[980px]
@@ -556,6 +556,10 @@ navigateTo("billing");
       }
     }}
     disabled={currentPlan === "Pro"}
+
+    style={{
+    transform: "translateY(-36px)",
+  }}
     
     className={`
       mt-10
@@ -579,12 +583,12 @@ navigateTo("billing");
       : "Downgrade to Pro"}
   </button>
 
-  <div
-    style={{
-      transform: "translateY(-28px)",
-    }}
-    className="mt-1 space-y-4 text-[15px] text-white/80"
-  >
+ <div
+  style={{
+    transform: "translateY(-28px)",
+  }}
+  className="mt-1 space-y-4 text-[15px] text-white/80"
+>
     <div className="text-white/80 font-medium mb-2">
       Everything in Free
     </div>
