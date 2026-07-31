@@ -556,9 +556,7 @@ navigateTo("billing");
       }
     }}
     disabled={currentPlan === "Pro"}
-    style={{
-      transform: "translateY(-36px)",
-    }}
+    
     className={`
       mt-10
       h-11
@@ -927,16 +925,15 @@ transition={{
 
   <div
   className="
-    mt-10
-   -translate-y-2
-    rounded-3xl
-    border
-    border-white/10
-    bg-white/[0.03]
-    px-6
-    pt-5
-    pb-3
-  "
+  mt-10
+  rounded-3xl
+  bg-white/[0.03]
+  border
+  border-white/10
+  px-6
+  pt-5
+  pb-3
+"
 >
   <h2 className="text-white text-lg font-medium">
     Order Summary
