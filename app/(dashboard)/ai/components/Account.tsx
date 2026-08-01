@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import PageWrapper from "@/app/(dashboard)/ai/components/layout/PageWrapper";
 import CustomScrollbar from "@/components/ui/CustomScrollbar";
@@ -21,12 +21,14 @@ const [page, setPage] = useState<
 const navigateTo = (
   nextPage: "account" | "plans" | "billing" | "cancel"
 ) => {
-  // setCardVisible(false);
+  requestAnimationFrame(() => {
+    setCardVisible(false);
 
-  setTimeout(() => {
-    setPage(nextPage);
-    setCardVisible(true);
-  }, 450);
+    setTimeout(() => {
+      setPage(nextPage);
+      setCardVisible(true);
+    }, 450);
+  });
 };
 
 
@@ -1023,12 +1025,16 @@ transition={{
 
 {page === "cancel" && (
   <motion.div
-    initial={{ opacity: 0 }}
+    initial={{
+      opacity: 0,
+      y: 12,
+    }}
     animate={{
-      opacity: cardVisible ? 1 : 0,
+      opacity: 1,
+      y: 0,
     }}
     transition={{
-      duration: 0.45,
+      duration: 0.5,
       ease: [0.22, 1, 0.36, 1],
     }}
     className="
@@ -1040,59 +1046,59 @@ transition={{
       pb-36
     "
   >
-    <div
-      className="
-        relative
-        w-[980px]
-        rounded-[28px]
-        border
-        border-white/10
-        bg-[#0E0E0E]
-        px-10
-        pt-5
-        pb-5
-      "
-    >
+    <motion.div
+  animate={{
+    opacity: cardVisible ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="
+    relative
+    w-[980px]
+    rounded-[28px]
+    border
+    border-white/10
+    bg-[#0E0E0E]
+    px-10
+    pt-5
+    pb-1
+  "
+>
+      <h1 className="text-4xl font-medium text-white text-center">
+        Cancel Subscription
+      </h1>
 
-     <h1 className="text-4xl font-medium text-white text-center">
-  Cancel Subscription
-</h1>
+      <p className="mt-3 text-center text-white/40 max-w-[620px] mx-auto leading-7">
+        We're sorry to see you go. Your subscription will remain active until
+        the end of your current billing period.
+      </p>
 
-<p className="mt-3 text-center text-white/40 max-w-[620px] mx-auto leading-7">
-  We're sorry to see you go. Your subscription will remain active until
-  the end of your current billing period.
-</p>
+      <div className="mt-12"></div>
 
-<div className="mt-12">
-
-</div>
-
-<div className="mt-10 flex justify-center">
-
-  <button
-    className="
-      h-9
-      px-5
-      rounded-full
-      border
-      border-red-500/70
-      bg-[#111111]
-      text-red-500
-      text-sm
-      font-medium
-      transition-all
-      duration-200
-      hover:border-red-500
-      hover:bg-red-500/10
-    "
-  >
-    Cancel Subscription
-  </button>
-
- 
-</div>
-
-    </div>
+      <div className="mt-10 flex justify-center">
+        <button
+          className="
+            h-9
+            px-5
+            rounded-full
+            border
+            border-red-500/70
+            bg-[#111111]
+            text-red-500
+            text-sm
+            font-medium
+            transition-all
+            duration-200
+            hover:border-red-500
+            hover:bg-red-500/10
+          "
+        >
+          Cancel Subscription
+        </button>
+            </div>
+    </motion.div>
   </motion.div>
 )}
 

@@ -30,10 +30,16 @@ const [page, setPage] = useState<"account" | "billing">("account");
         ease: [0.22, 1, 0.36, 1],
       }}
       style={{
-        willChange: "transform, opacity",
-        transform: "translate(-22px, -22px)",
-      }}
-      className="min-h-[calc(100vh-80px)] flex items-center justify-center py-1"
+  willChange: "transform",
+}}
+      className="
+  w-full
+  flex
+  justify-center
+  items-start
+  pt-4
+  pb-36
+"
     >
       <motion.div
   animate={{
@@ -44,14 +50,16 @@ const [page, setPage] = useState<"account" | "billing">("account");
     ease: [0.22, 1, 0.36, 1],
   }}
         className="
-          w-full
-          max-w-3xl
-          rounded-3xl
-          border
-          border-white/10
-          bg-white/[0.04]
-          p-8
-        "
+  relative
+  w-[980px]
+  rounded-[28px]
+  border
+  border-white/10
+  bg-[#0E0E0E]
+  px-10
+  pt-5
+  pb-1
+"
       >
         <h1 className="text-[1.85rem] font-medium text-white -mt-5">
           Settings
