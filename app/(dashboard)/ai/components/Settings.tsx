@@ -52,6 +52,7 @@ const [page, setPage] = useState<"account" | "billing">("account");
         className="
   relative
   w-[980px]
+  min-h-[485px]
   rounded-[28px]
   border
   border-white/10
@@ -61,13 +62,19 @@ const [page, setPage] = useState<"account" | "billing">("account");
   pb-1
 "
       >
-        <h1 className="text-[1.85rem] font-medium text-white -mt-5">
-          Settings
-        </h1>
+        <h1
+  style={{ transform: "translateY(12px)" }}
+  className="text-[1.85rem] font-medium text-white -mt-5"
+>
+  Settings
+</h1>
 
-        <p className="mt-1 text-white/40">
-          Help, privacy and legal information.
-        </p>
+<p
+  style={{ transform: "translateY(12px)" }}
+  className="mt-1 text-white/40"
+>
+  Help, privacy and legal information.
+</p>
 
         <div className="mt-8 flex flex-col gap-4">
 
@@ -239,61 +246,65 @@ const [page, setPage] = useState<"account" | "billing">("account");
     duration: 0.45,
     ease: [0.22, 1, 0.36, 1],
   }}
-  style={{
-  left: "160px",
-}}
-  className="fixed inset-0 ..."
+  className="
+  fixed
+  inset-0
+  flex
+  justify-center
+  items-start
+  pt-4
+  pb-36
+"
 >
-      <button
-       onClick={() => {
-  setShowButtonsHelp(false);
 
-  setTimeout(() => {
-    setCardVisible(true);
-  }, 450);
-}}
-        style={{
-  transform: "translateY(-19px)",
-}}
-        className="
-          absolute
-          top-1
-          right-14
-          w-11
-          h-11
-          rounded-full
-          border
-          border-white/10
-          bg-[#111111]
-          text-white/70
-          hover:text-white
-          hover:border-white/20
-          transition-all
-          flex
-          items-center
-          justify-center
-        "
-      >
-        <svg
-  width="20"
-  height="20"
-  viewBox="0 0 24 24"
-  fill="none"
+<motion.div
+  className="
+    fixed
+    z-[100]
+    top-4
+    right-[82px]
+  "
 >
-  <path
-    d="M7 7L17 17"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="square"
-  />
-  <path
-    d="M17 7L7 17"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="square"
-  />
-</svg>
-      </button>
+
+  <button
+    onClick={() => {
+      setShowButtonsHelp(false);
+
+      setTimeout(() => {
+        setCardVisible(true);
+      }, 450);
+    }}
+    className="
+      w-11
+      h-9
+      rounded-full
+      border
+      border-white/10
+      bg-white/5
+      flex
+      items-center
+      justify-center
+      hover:bg-white/[0.08]
+      transition-all
+      duration-200
+    "
+  >
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="rgb(255,255,255)"
+      opacity="0.4"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    >
+      <line x1="6" y1="6" x2="18" y2="18" />
+      <line x1="18" y1="6" x2="6" y2="18" />
+    </svg>
+  </button>
+
+</motion.div>
 
       <motion.div
   initial={false}
@@ -310,16 +321,21 @@ const [page, setPage] = useState<"account" | "billing">("account");
     ease: [0.22, 1, 0.36, 1],
   }}
         className="
-          w-[1000px]
-          h-[600px]
-          rounded-3xl
-          border
-          border-white/10
-          bg-[#0E0E0E]
-          p-10
-        "
+  w-[980px]
+  min-h-[485px]
+  rounded-[28px]
+  border
+  border-white/10
+  bg-[#0E0E0E]
+  px-10
+  pt-5
+  pb-1
+"
       >
-        <h1 className="text-4xl font-semibold text-white">
+        <h1
+  style={{ transform: "translateY(12px)" }}
+  className="text-[1.85rem] font-medium text-white -mt-5"
+>
   {selectedSection === "Legal"
     ? "Legal"
     : selectedSection === "Privacy Policy"
@@ -412,20 +428,17 @@ const [page, setPage] = useState<"account" | "billing">("account");
 
 {/* Content */}
 <div
+  style={{ transform: "translateY(-8px)" }}
   className={`
-    ${
-      selectedSection === "Privacy Policy" ||
-selectedSection === "Legal"
-  ? "w-full h-[435px]"
-  : "flex-1 h-[435px]"
-    }
+    flex-1
+    h-[435px]
     rounded-3xl
     border
     border-white/10
     bg-white/[0.03]
     p-8
     overflow-y-auto
-    custom-scrollbar
+    no-scrollbar
     pr-4
   `}
 >
@@ -443,8 +456,7 @@ selectedSection === "Legal"
     <div className="mt-8 space-y-4">
 
       {/* Home */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
-        <p className="max-w-[72%] text-white/80 leading-7">
+<div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">        <p className="max-w-[72%] text-white/80 leading-7">
           Returns you to the main dashboard from anywhere inside Halune.
         </p>
 
@@ -465,8 +477,7 @@ selectedSection === "Legal"
       </div>
 
       {/* AI */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
-        <p className="max-w-[72%] text-white/80 leading-7">
+<div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">        <p className="max-w-[72%] text-white/80 leading-7">
           Opens the AI Assistant where you can chat, build AI apps and access Halune's AI features.
         </p>
 
@@ -534,7 +545,7 @@ selectedSection === "Legal"
       </div>
 
 {/* Dashboard */}
-<div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+<div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
   <p className="max-w-[72%] text-white/80 leading-7">
     Opens your Dashboard where you can manage your workspace, analytics and recently used AI tools.
   </p>
@@ -545,7 +556,7 @@ selectedSection === "Legal"
 </div>
 
       {/* Templates */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+      <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
         <p className="max-w-[72%] text-white/80 leading-7">
           Opens the Templates page where you can browse and launch AI templates.
         </p>
@@ -556,7 +567,7 @@ selectedSection === "Legal"
       </div>
 
       {/* Account */}
-<div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+<div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
   <p className="max-w-[72%] text-white/80 leading-7">
     Opens your Account page where you can edit your profile, subscription and billing information.
   </p>
@@ -567,7 +578,7 @@ selectedSection === "Legal"
 </div>
 
 {/* Settings */}
-<div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+<div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
   <p className="max-w-[72%] text-white/80 leading-7">
     Opens Settings where you can access help, privacy policy and legal information.
   </p>
@@ -578,7 +589,7 @@ selectedSection === "Legal"
 </div>
 
       {/* Notifications */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+      <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
         <p className="max-w-[72%] text-white/80 leading-7">
           Opens your notification center.
         </p>
@@ -605,7 +616,7 @@ selectedSection === "Legal"
     <div className="mt-8 space-y-4">
 
             {/* Search */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+      <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
         <p className="max-w-[72%] text-white/80 leading-7">
           Search AI apps, templates and creators instantly.
         </p>
@@ -616,7 +627,7 @@ selectedSection === "Legal"
       </div>
 
       {/* Filter */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+      <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
         <p className="max-w-[72%] text-white/80 leading-7">
           Filter the marketplace by category.
         </p>
@@ -627,7 +638,7 @@ selectedSection === "Legal"
       </div>
 
       {/* Likes */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+      <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
         <p className="max-w-[72%] text-white/80 leading-7">
           Shows how many users have liked an AI app.
         </p>
@@ -642,7 +653,7 @@ selectedSection === "Legal"
       </div>
 
       {/* Views */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+      <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
         <p className="max-w-[72%] text-white/80 leading-7">
           Displays how many times an AI app has been viewed.
         </p>
@@ -655,7 +666,7 @@ selectedSection === "Legal"
       </div>
 
       {/* Profile */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+      <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
         <p className="max-w-[72%] text-white/80 leading-7">
           Opens your public profile.
         </p>
@@ -666,7 +677,7 @@ selectedSection === "Legal"
       </div>
 
       {/* Settings */}
-      <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+      <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
         <p className="max-w-[72%] text-white/80 leading-7">
           Opens the quick settings menu.
         </p>
@@ -694,7 +705,7 @@ selectedSection === "Legal"
   <div className="mt-8 space-y-4">
 
     {/* My Apps */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Opens your collection of AI applications that you have created.
       </p>
@@ -705,7 +716,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Create App */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Starts creating a new AI application.
       </p>
@@ -726,7 +737,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Upload App */}
-<div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+<div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
   <p className="max-w-[72%] text-white/80 leading-7">
     Uploads an existing AI application to continue editing or publish it on Halune.
   </p>
@@ -755,7 +766,7 @@ selectedSection === "Legal"
 </div>
 
     {/* Close */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Closes the Builder and returns to the previous page.
       </p>
@@ -783,7 +794,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Undo */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Reverts your most recent Builder action.
       </p>
@@ -813,7 +824,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Redo */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Restores the last action that was undone.
       </p>
@@ -843,7 +854,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Preview */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Switches between the application preview and the launch configuration.
       </p>
@@ -882,7 +893,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Expand Preview */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Opens the application preview in a larger window.
       </p>
@@ -913,7 +924,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Restore Preview */}
-<div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+<div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
   <p className="max-w-[72%] text-white/80 leading-7">
     Reverts the application preview to its original size.
   </p>
@@ -941,7 +952,7 @@ selectedSection === "Legal"
 </div>
 
     {/* Upload Thumbnail */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Uploads a thumbnail image that represents your application.
       </p>
@@ -966,7 +977,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Remove Thumbnail */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Removes the currently selected thumbnail image.
       </p>
@@ -994,7 +1005,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Publish Application */}
-<div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+<div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
   <p className="max-w-[72%] text-white/80 leading-7">
     Publishes your application to the Halune Marketplace.
   </p>
@@ -1016,7 +1027,7 @@ selectedSection === "Legal"
 </div>
 
     {/* Attachment */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Uploads files that the AI can use while responding.
       </p>
@@ -1041,7 +1052,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Vision */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Lets the AI analyze uploaded images.
       </p>
@@ -1052,7 +1063,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Microphone */}
-    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+    <div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
       <p className="max-w-[72%] text-white/80 leading-7">
         Records your voice instead of typing.
       </p>
@@ -1063,7 +1074,7 @@ selectedSection === "Legal"
     </div>
 
     {/* Send Message */}
-<div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4">
+<div className="h-[82px] flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-5">
   <p className="max-w-[72%] text-white/80 leading-7">
     Sends your message to the AI Assistant.
   </p>
@@ -1091,7 +1102,7 @@ selectedSection === "Legal"
 {selectedSection === "Privacy Policy" && (
 <>
 
-  <div className="mt-8 space-y-8">
+  <div className="mt-0 space-y-8">
 
     <section>
       <h3 className="text-white text-lg font-medium">
@@ -1254,7 +1265,7 @@ selectedSection === "Legal"
 
 
 
-  <div className="mt-8 space-y-8">
+  <div className="mt-0 space-y-8">
 
     <section>
       <h3 className="text-white text-lg font-medium">

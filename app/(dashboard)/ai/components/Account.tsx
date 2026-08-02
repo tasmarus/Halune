@@ -21,14 +21,15 @@ const [page, setPage] = useState<
 const navigateTo = (
   nextPage: "account" | "plans" | "billing" | "cancel"
 ) => {
-  requestAnimationFrame(() => {
-    setCardVisible(false);
+  setCardVisible(false);
 
-    setTimeout(() => {
-      setPage(nextPage);
+  setTimeout(() => {
+    setPage(nextPage);
+
+    requestAnimationFrame(() => {
       setCardVisible(true);
-    }, 450);
-  });
+    });
+  }, 450);
 };
 
 
