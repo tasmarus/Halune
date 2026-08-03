@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import PageWrapper from "@/app/(dashboard)/ai/components/layout/PageWrapper";
-import AccountCardShell from "@/components/ui/AccountCardShell";
 import CustomScrollbar from "@/components/ui/CustomScrollbar";
 export default function Account() {
 const [cardVisible, setCardVisible] = useState(true);
@@ -346,12 +345,60 @@ style={{
 )}
 
       {page === "plans" && (
-  <AccountCardShell
-    title="Choose your plan"
-    subtitle="Upgrade or downgrade your Halune subscription."
-    visible={cardVisible}
-    onClose={() => navigateTo("account")}
+  <motion.div
+    initial={{
+  opacity: 0,
+  y: 12,
+}}
+animate={{
+  opacity: 1,
+  y: 0,
+}}
+transition={{
+  duration: 0.5,
+  ease: [0.22, 1, 0.36, 1],
+}}
+style={{
+  willChange: "transform",
+}}
+    className="
+      w-full
+      flex
+      justify-center
+      items-start
+      pt-4
+      pb-36
+    "
   >
+    <motion.div
+  animate={{
+    opacity: cardVisible ? 1 : 0,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+
+  className="
+    relative
+    w-[980px]
+    rounded-[28px]
+    border
+    border-white/10
+    bg-[#0E0E0E]
+    px-10
+    pt-5
+    pb-1
+  "
+>
+
+          <h1 className="text-4xl font-medium text-white text-center">
+            Choose your plan
+          </h1>
+
+          <p className="text-center text-white/40 mt-3">
+            Upgrade or downgrade your Halune subscription.
+          </p>
 
           <div className="mt-8 grid grid-cols-3 gap-8">
 
@@ -696,7 +743,8 @@ navigateTo("billing");
 
 
 
-  </AccountCardShell>
+   </motion.div>
+  </motion.div>
 )}
         
   

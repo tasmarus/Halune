@@ -247,8 +247,6 @@ const [page, setPage] = useState<"account" | "billing">("account");
     ease: [0.22, 1, 0.36, 1],
   }}
   className="
-  fixed
-  inset-0
   flex
   justify-center
   items-start
@@ -257,39 +255,27 @@ const [page, setPage] = useState<"account" | "billing">("account");
 "
 >
 
-<motion.div
->
-
-  
-
-</motion.div>
-
       <motion.div
-  initial={false}
   animate={{
     opacity: 1,
-    scale: 1,
-  }}
-  exit={{
-    opacity: 0,
-    scale: 0.985,
   }}
   transition={{
     duration: 0.45,
     ease: [0.22, 1, 0.36, 1],
   }}
-        className="
-  w-[980px]
-  min-h-[485px]
-  rounded-[28px]
-  border
-  border-white/10
-  bg-[#0E0E0E]
-  px-10
-  pt-5
-  pb-1
-"
-      >
+  className="
+    relative
+    w-[980px]
+    min-h-[485px]
+    rounded-[28px]
+    border
+    border-white/10
+    bg-[#0E0E0E]
+    px-10
+    pt-5
+    pb-1
+  "
+>
 
 
         <div
