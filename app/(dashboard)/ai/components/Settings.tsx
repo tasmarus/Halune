@@ -247,6 +247,8 @@ const [page, setPage] = useState<"account" | "billing">("account");
     ease: [0.22, 1, 0.36, 1],
   }}
   className="
+  fixed
+  inset-0
   flex
   justify-center
   items-start
@@ -254,6 +256,8 @@ const [page, setPage] = useState<"account" | "billing">("account");
   pb-36
 "
 >
+
+  
 
       <motion.div
   animate={{
@@ -277,14 +281,13 @@ const [page, setPage] = useState<"account" | "billing">("account");
   "
 >
 
-
-        <div
+  <div
 className="
-    fixed
-    z-[100]
-    top-4
-    right-[82px]
-  "
+  fixed
+  z-[100]
+  -top-2
+  right-[68px]
+"
 >
 
 <button
@@ -325,8 +328,7 @@ className="
   </svg>
 </button>
 </div>
-
-
+        
         <h1
   style={{ transform: "translateY(12px)" }}
   className="text-[1.85rem] font-medium text-white -mt-5"

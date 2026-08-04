@@ -272,78 +272,6 @@ style={{
                 </motion.div>
     )}
 
-   {page !== "account" && (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{
-      opacity: cardVisible ? 1 : 0,
-    }}
-    transition={{
-      duration: 0.45,
-      ease: [0.22, 1, 0.36, 1],
-    }}
-    className="
-      fixed
-      z-[100]
-      top-4
-      right-[82px]
-    "
-  >
-    <button
-      onClick={() => {
-        let targetPage: "account" | "plans" | "billing" | "cancel" | null = null;
-
-        switch (page) {
-          case "plans":
-            targetPage = "account";
-            break;
-
-          case "billing":
-            targetPage = "plans";
-            break;
-
-          case "cancel":
-            targetPage = "account";
-            break;
-
-          default:
-            return;
-        }
-
-        navigateTo(targetPage!);
-      }}
-      className="
-        w-11
-        h-9
-        rounded-full
-        border
-        border-white/10
-        bg-white/5
-        flex
-        items-center
-        justify-center
-        hover:bg-white/[0.08]
-        transition-all
-        duration-200
-      "
-    >
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="rgb(255,255,255)"
-        opacity="0.4"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      >
-        <line x1="6" y1="6" x2="18" y2="18" />
-        <line x1="18" y1="6" x2="6" y2="18" />
-      </svg>
-    </button>
-  </motion.div>
-)}
-
       {page === "plans" && (
   <motion.div
     initial={{
@@ -391,6 +319,55 @@ style={{
     pb-1
   "
 >
+
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{
+      opacity: cardVisible ? 1 : 0,
+    }}
+    transition={{
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    className="
+      fixed
+      z-[100]
+      -top-2
+right-[68px]
+    "
+  >
+    <button
+  onClick={() => navigateTo("account")}
+  className="
+    w-11
+    h-9
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="rgb(255,255,255)"
+        opacity="0.4"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      >
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
+    </button>
+  </motion.div>
 
           <h1 className="text-4xl font-medium text-white text-center">
             Choose your plan
@@ -795,6 +772,56 @@ transition={{
     pb-1
   "
 >
+
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{
+      opacity: cardVisible ? 1 : 0,
+    }}
+    transition={{
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    className="
+  fixed
+  z-[100]
+  -top-2
+  right-[68px]
+"
+  >
+    <button
+  onClick={() => navigateTo("plans")}
+  className="
+    w-11
+    h-9
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="rgb(255,255,255)"
+        opacity="0.4"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      >
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
+    </button>
+  </motion.div>
+
       <h1 className="text-4xl font-medium text-white text-center">
   Billing
 </h1>
@@ -1067,6 +1094,56 @@ transition={{
     pb-1
   "
 >
+
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{
+      opacity: cardVisible ? 1 : 0,
+    }}
+    transition={{
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    className="
+  fixed
+  z-[100]
+  top-3
+  right-[76px]
+"
+  >
+   <button
+  onClick={() => navigateTo("account")}
+  className="
+    w-11
+    h-9
+    rounded-full
+    border
+    border-white/10
+    bg-white/5
+    flex
+    items-center
+    justify-center
+    hover:bg-white/[0.08]
+    transition-all
+    duration-200
+  "
+>
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="rgb(255,255,255)"
+        opacity="0.4"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      >
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
+    </button>
+  </motion.div>
+
       <h1 className="text-4xl font-medium text-white text-center">
         Cancel Subscription
       </h1>
