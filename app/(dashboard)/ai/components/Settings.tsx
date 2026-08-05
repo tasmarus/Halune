@@ -260,9 +260,17 @@ const [page, setPage] = useState<"account" | "billing">("account");
   
 
       <motion.div
+  initial={{
+    opacity: 0,
+    y: 12,
+  }}
   animate={{
     opacity: 1,
+    y: 0,
   }}
+  exit={{
+  opacity: 0,
+}}
   transition={{
     duration: 0.45,
     ease: [0.22, 1, 0.36, 1],
@@ -282,12 +290,12 @@ const [page, setPage] = useState<"account" | "billing">("account");
 >
 
   <div
-className="
-  fixed
-  z-[100]
-  -top-2
-  right-[68px]
-"
+  className="
+    absolute
+    z-[100]
+    top-[-8px]
+    right-[-18px]
+  "
 >
 
 <button
@@ -330,8 +338,13 @@ className="
 </div>
         
         <h1
-  style={{ transform: "translateY(12px)" }}
-  className="text-[1.85rem] font-medium text-white -mt-5"
+  className="
+    text-[1.85rem]
+    font-medium
+    text-white
+    -mt-5
+    pt-3
+  "
 >
   {selectedSection === "Legal"
     ? "Legal"
