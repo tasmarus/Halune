@@ -276,14 +276,14 @@ style={{
   <motion.div
    initial={{
   opacity: 0,
-  marginTop: "12px",
+  marginTop: "8px",
 }}
 animate={{
   opacity: 1,
   marginTop: "0px",
 }}
 transition={{
-  duration: 0.5,
+  duration: 0.45,
   ease: [0.22, 1, 0.36, 1],
 }}
 style={{
@@ -308,16 +308,17 @@ style={{
   }}
 
   className="
-    relative
-    w-[980px]
-    rounded-[28px]
-    border
-    border-white/10
-    bg-[#0E0E0E]
-    px-10
-    pt-5
-    pb-1
-  "
+  relative
+  w-[980px]
+  min-h-[485px]
+  rounded-[28px]
+  border
+  border-white/10
+  bg-[#0E0E0E]
+  px-10
+  pt-5
+  pb-1
+"
 >
 
   <motion.div
