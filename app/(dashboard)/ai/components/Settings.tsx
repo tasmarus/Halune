@@ -293,8 +293,8 @@ const [page, setPage] = useState<"account" | "billing">("account");
   className="
     absolute
     z-[100]
-    top-[-8px]
-    right-[-18px]
+    top-[-28px]
+    right-[-44px]
   "
 >
 

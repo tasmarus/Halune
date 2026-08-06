@@ -274,13 +274,13 @@ style={{
 
       {page === "plans" && (
   <motion.div
-    initial={{
+   initial={{
   opacity: 0,
-  y: 12,
+  marginTop: "12px",
 }}
 animate={{
   opacity: 1,
-  y: 0,
+  marginTop: "0px",
 }}
 transition={{
   duration: 0.5,
@@ -330,11 +330,11 @@ style={{
       ease: [0.22, 1, 0.36, 1],
     }}
     className="
-      fixed
-      z-[100]
-      -top-2
-right-[68px]
-    "
+    absolute
+    z-[100]
+    top-[-28px]
+    right-[-44px]
+  "
   >
     <button
   onClick={() => navigateTo("account")}
@@ -783,11 +783,11 @@ transition={{
       ease: [0.22, 1, 0.36, 1],
     }}
     className="
-  fixed
-  z-[100]
-  -top-2
-  right-[68px]
-"
+    absolute
+    z-[100]
+    top-[-28px]
+    right-[-44px]
+  "
   >
     <button
   onClick={() => navigateTo("plans")}
