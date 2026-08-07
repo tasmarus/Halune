@@ -7,7 +7,6 @@ export default function Templates() {
     <motion.div
       initial={{
         opacity: 0,
-        y: 12,
       }}
       animate={{
         opacity: 1,

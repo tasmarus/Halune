@@ -38,11 +38,9 @@ const navigateTo = (
 <motion.div
     initial={{
   opacity: 0,
-  y: 12,
 }}
 animate={{
   opacity: 1,
-  y: 0,
 }}
 transition={{
   duration: 0.5,
@@ -274,30 +272,29 @@ style={{
 
       {page === "plans" && (
   <motion.div
-   initial={{
+  initial={{
   opacity: 0,
-  marginTop: "8px",
 }}
+
 animate={{
   opacity: 1,
-  marginTop: "0px",
 }}
-transition={{
-  duration: 0.45,
-  ease: [0.22, 1, 0.36, 1],
+  transition={{
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  style={{
+  willChange: "opacity, transform",
 }}
-style={{
-  willChange: "transform",
-}}
-    className="
-      w-full
-      flex
-      justify-center
-      items-start
-      pt-4
-      pb-36
-    "
-  >
+  className="
+  w-full
+  flex
+  justify-center
+  items-start
+  pt-4
+  pb-36
+"
+>
     <motion.div
   animate={{
     opacity: cardVisible ? 1 : 0,
@@ -306,19 +303,18 @@ style={{
     duration: 0.45,
     ease: [0.22, 1, 0.36, 1],
   }}
-
   className="
-  relative
-  w-[980px]
-  min-h-[485px]
-  rounded-[28px]
-  border
-  border-white/10
-  bg-[#0E0E0E]
-  px-10
-  pt-5
-  pb-1
-"
+    relative
+    w-[980px]
+    min-h-[485px]
+    rounded-[28px]
+    border
+    border-white/10
+    bg-[#0E0E0E]
+    px-10
+    pt-5
+    pb-1
+  "
 >
 
   <motion.div
@@ -730,12 +726,10 @@ navigateTo("billing");
       {page === "billing" && (
   <motion.div
   initial={{
-  opacity: 0,
-  y: 12,
+  opacity: 0
 }}
 animate={{
   opacity: 1,
-  y: 0,
 }}
 transition={{
   duration: 0.5,
@@ -1056,11 +1050,9 @@ transition={{
   <motion.div
     initial={{
       opacity: 0,
-      y: 12,
     }}
     animate={{
       opacity: 1,
-      y: 0,
     }}
     transition={{
       duration: 0.5,
@@ -1180,7 +1172,6 @@ transition={{
     </motion.div>
   </motion.div>
 )}
-
     </>
   );
 }

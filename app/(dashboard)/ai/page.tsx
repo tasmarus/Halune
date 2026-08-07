@@ -255,7 +255,7 @@ useEffect(() => {
 />
 
       {/* MAIN */}
-      <div className="flex-1 h-screen p-6 overflow-hidden">
+      <div className="flex-1 h-screen p-6 overflow-visible">
 
 {activeSection === "templates" && <Templates />}
 
@@ -265,8 +265,8 @@ useEffect(() => {
 
 {activeSection === "notifications" && (
   <motion.div
-    initial={{ opacity: 0, y: 12 }}
-    animate={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, }}
+    animate={{ opacity: 1,}}
     transition={{
       duration: 0.5,
       ease: [0.22, 1, 0.36, 1],
@@ -274,7 +274,7 @@ useEffect(() => {
     style={{
       willChange: "transform, opacity",
     }}
-    className="h-full flex items-center justify-center"
+    className="w-full"
   >
     <Notifications />
   </motion.div>
@@ -332,12 +332,10 @@ useEffect(() => {
         {activeSection === "dashboard" && builderOpen && (
   <motion.div
   initial={{
-    opacity: 0,
-    y: 18,
+    opacity: 0, 
   }}
   animate={{
     opacity: 1,
-    y: 0,
   }}
   transition={{
     duration: 0.55,
@@ -1264,7 +1262,7 @@ onClick={() => {
                     }}
                   >
                     {mounted &&
-                      `${stat.percent > 0 ? "+" : ""}${stat.percent}% vs last month`}
+                      `${stat.percent > 0 ? "+" : ""}${stat.percent}% vs last week`}
                   </p>
                 </div>
               );

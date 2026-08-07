@@ -19,11 +19,9 @@ const [page, setPage] = useState<"account" | "billing">("account");
     <motion.div
       initial={{
         opacity: 0,
-        y: 12,
       }}
       animate={{
         opacity: 1,
-        y: 0,
       }}
       transition={{
         duration: 0.5,
@@ -64,14 +62,14 @@ const [page, setPage] = useState<"account" | "billing">("account");
       >
         <h1
   style={{ transform: "translateY(12px)" }}
-  className="text-[1.85rem] font-medium text-white -mt-5"
+  className="text-[1.85rem] font-medium text-white -mt-5 text-center"
 >
   Settings
 </h1>
 
 <p
   style={{ transform: "translateY(12px)" }}
-  className="mt-1 text-white/40"
+  className="-mt-1 text-center text-white/40"
 >
   Help, privacy and legal information.
 </p>
@@ -262,11 +260,9 @@ const [page, setPage] = useState<"account" | "billing">("account");
       <motion.div
   initial={{
     opacity: 0,
-    y: 12,
   }}
   animate={{
     opacity: 1,
-    y: 0,
   }}
   exit={{
   opacity: 0,
@@ -339,12 +335,12 @@ const [page, setPage] = useState<"account" | "billing">("account");
         
         <h1
   className="
-    text-[1.85rem]
-    font-medium
-    text-white
-    -mt-5
-    pt-3
-  "
+  text-[1.85rem]
+  font-medium
+  text-white
+  -mt-5
+  text-center
+"
 >
   {selectedSection === "Legal"
     ? "Legal"
@@ -353,7 +349,13 @@ const [page, setPage] = useState<"account" | "billing">("account");
     : "Buttons Explained"}
 </h1>
 
-<p className="mt-3 text-white/45">
+<p
+  className="
+    -mt-1
+    text-center
+    text-white/40
+  "
+>
   {selectedSection === "Legal"
     ? "Important legal information, platform terms and user responsibilities."
     : selectedSection === "Privacy Policy"
