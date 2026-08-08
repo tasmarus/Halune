@@ -334,13 +334,8 @@ const [page, setPage] = useState<"account" | "billing">("account");
 </div>
         
         <h1
-  className="
-  text-[1.85rem]
-  font-medium
-  text-white
-  -mt-5
-  text-center
-"
+  style={{ transform: "translateY(12px)" }}
+  className="text-[1.85rem] font-medium text-white -mt-5 text-center"
 >
   {selectedSection === "Legal"
     ? "Legal"
@@ -350,11 +345,8 @@ const [page, setPage] = useState<"account" | "billing">("account");
 </h1>
 
 <p
-  className="
-    -mt-1
-    text-center
-    text-white/40
-  "
+  style={{ transform: "translateY(12px)" }}
+  className="-mt-1 text-center text-white/40"
 >
   {selectedSection === "Legal"
     ? "Important legal information, platform terms and user responsibilities."

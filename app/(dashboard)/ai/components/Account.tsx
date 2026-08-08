@@ -79,11 +79,17 @@ style={{
         pb-1
       "
     >
-        <h1 className="text-4xl font-medium text-white text-center">
+        <h1
+  style={{ transform: "translateY(12px)" }}
+  className="text-[1.85rem] font-medium text-white -mt-5 text-center"
+>
   Account
 </h1>
 
-<p className="text-center text-white/40 mt-3">
+ <p
+  style={{ transform: "translateY(12px)" }}
+  className="-mt-1 text-center text-white/40"
+>
   Manage your account and billing.
 </p>
 
@@ -1137,20 +1143,28 @@ transition={{
     </button>
   </motion.div>
 
-      <h1 className="text-4xl font-medium text-white text-center">
-        Cancel Subscription
-      </h1>
+      <h1
+  style={{ transform: "translateY(12px)" }}
+  className="text-[1.85rem] font-medium text-white -mt-5 text-center"
+>
+  Cancel Subscription
+</h1>
 
-      <p className="mt-3 text-center text-white/40 max-w-[620px] mx-auto leading-7">
-        We're sorry to see you go. Your subscription will remain active until
-        the end of your current billing period.
-      </p>
+       <p
+  style={{ transform: "translateY(12px)" }}
+  className="mt-1 text-center text-white/40"
+>
+  We're sorry to see you go. Your subscription will remain active until
+  the end of your current billing period.
+</p>
 
       <div className="mt-12"></div>
 
       <div className="mt-10 flex justify-center">
         <button
           className="
+          relative
+  -top-4
             h-9
             px-5
             rounded-full
@@ -1162,8 +1176,7 @@ transition={{
             font-medium
             transition-all
             duration-200
-            hover:border-red-500
-            hover:bg-red-500/10
+            
           "
         >
           Cancel Subscription
